@@ -21,22 +21,22 @@ ActiveRecord::Schema.define(version: 2019_07_04_191531) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.integer "Laboratory_id"
+    t.integer "laboratory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Laboratory_id"], name: "index_locations_on_Laboratory_id"
+    t.index ["laboratory_id"], name: "index_locations_on_laboratory_id"
   end
 
   create_table "reagent_uses", force: :cascade do |t|
-    t.integer "Reagent_id"
-    t.integer "User_id"
+    t.integer "reagent_id"
+    t.integer "user_id"
     t.string "unit"
     t.integer "quantity"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Reagent_id"], name: "index_reagent_uses_on_Reagent_id"
-    t.index ["User_id"], name: "index_reagent_uses_on_User_id"
+    t.index ["reagent_id"], name: "index_reagent_uses_on_reagent_id"
+    t.index ["user_id"], name: "index_reagent_uses_on_user_id"
   end
 
   create_table "reagents", force: :cascade do |t|
@@ -46,23 +46,23 @@ ActiveRecord::Schema.define(version: 2019_07_04_191531) do
     t.integer "quantity"
     t.string "location"
     t.string "source"
-    t.integer "Laboratory_id"
-    t.integer "Location_id"
+    t.integer "laboratory_id"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Laboratory_id"], name: "index_reagents_on_Laboratory_id"
-    t.index ["Location_id"], name: "index_reagents_on_Location_id"
+    t.index ["laboratory_id"], name: "index_reagents_on_laboratory_id"
+    t.index ["location_id"], name: "index_reagents_on_location_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.integer "Laboratory_id"
+    t.integer "laboratory_id"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Laboratory_id"], name: "index_users_on_Laboratory_id"
+    t.index ["laboratory_id"], name: "index_users_on_laboratory_id"
   end
 
 end
