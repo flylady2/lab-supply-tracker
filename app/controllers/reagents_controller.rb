@@ -1,0 +1,2 @@
+class ReagentsController < ApplicationController
+end
