@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 2019_07_04_191531) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.integer "laboratory_id"
+    t.integer "lab_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["laboratory_id"], name: "index_locations_on_laboratory_id"
+    t.index ["lab_id"], name: "index_locations_on_lab_id"
   end
 
   create_table "reagent_uses", force: :cascade do |t|
@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 2019_07_04_191531) do
     t.integer "quantity"
     t.string "location"
     t.string "source"
-    t.integer "laboratory_id"
+    t.integer "lab_id"
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["laboratory_id"], name: "index_reagents_on_laboratory_id"
+    t.index ["lab_id"], name: "index_reagents_on_lab_id"
     t.index ["location_id"], name: "index_reagents_on_location_id"
   end
 
@@ -58,11 +58,11 @@ ActiveRecord::Schema.define(version: 2019_07_04_191531) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.integer "laboratory_id"
+    t.integer "lab_id"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["laboratory_id"], name: "index_users_on_laboratory_id"
+    t.index ["lab_id"], name: "index_users_on_lab_id"
   end
 
 end

@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :email
       t.string :password_digest
-      t.belongs_to :laboratory, foreign_key: true
+      t.belongs_to :lab, foreign_key: true
       t.boolean :admin, default: "0"
 
       t.timestamps

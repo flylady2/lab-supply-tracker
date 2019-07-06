@@ -7,7 +7,7 @@ class CreateReagents < ActiveRecord::Migration[5.2]
       t.integer :quantity
       t.string :location
       t.string :source
-      t.belongs_to :laboratory, foreign_key: true
+      t.belongs_to :lab, foreign_key: true
       t.belongs_to :location, foreign_key: true
 
       t.timestamps
