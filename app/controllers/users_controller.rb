@@ -14,16 +14,20 @@ def create
   #byebug
   if params[:lab_id] && lab = Lab.find_by_id(params[:lab_id])
     @user = lab.build_user(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to users_home_path(@user)
-    else
-      render :new
-    end
   else
-    #flash[:message] = "You must be a member of a participating lab to sign up"
-    redirect_to '/' #home or welcome page
+    @user = User.new(user_params)
   end
+  byebug
+  if @user.save
+    session[:user_id] = @user.id
+    redirect_to users_home_path(@user)
+  else
+    render :new
+  end
+  #else
+    #flash[:message] = "You must be a member of a participating lab to sign up"
+  #  redirect_to '/' #home or welcome page
+  #end
 end
 
 
