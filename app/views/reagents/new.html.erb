@@ -1,0 +1,27 @@
+<%= form_for [@lab, @reagent] do |f| %>
+
+  <%= f.hidden_field :lab_id %>
+  
+   <%= f.label :name %>
+   <%= f.text_field :name %>
+   <br><br>
+   <%= f.label :category %>
+   <%= f.text_field :category %>
+    <br><br>
+   <%= f.label :source %>
+   <%= f.text_field :source %>
+    <br><br>
+   <%= f.label :unit%>
+   <%= f.text_field :unit%>
+    <br><br>
+    <%= f.label :quantity%>
+    <%= f.float :quantity%>
+    <br><br>
+   <%= f.label :lab_id, "Select location" %>
+   <%= f.collection_select :Location_id, Location.all, :id, :location %>
+
+
+
+   <%= f.submit "Create Reagent" %>
+
+<% end %>
