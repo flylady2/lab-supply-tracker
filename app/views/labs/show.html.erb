@@ -1,0 +1,11 @@
+<h1>Welcome to the <%=@lab.principal_investigator%> Lab!</h1>
+
+<h2><%=@lab.principal_investigator%> Lab members:</h2>
+  <% @lab.users.each do |user| %>
+    <ul>
+      Name:<%= user.name %><br>
+      Email:<%= user.email %>
+    </ul>
+  <% end %>
+
+  <h2>link_to "Reagent Use Form", edit_lab_reagent %>
