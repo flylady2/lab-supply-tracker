@@ -1,7 +1,7 @@
 <%= form_for [@lab, @reagent] do |f| %>
 
   <%= f.hidden_field :lab_id %>
-  
+
    <%= f.label :name %>
    <%= f.text_field :name %>
    <br><br>
@@ -17,7 +17,7 @@
     <%= f.label :quantity%>
     <%= f.float :quantity%>
     <br><br>
-   <%= f.label :lab_id, "Select location" %>
+   <%= f.label :location_id, "Select location" %>
    <%= f.collection_select :Location_id, Location.all, :id, :location %>
 
 
