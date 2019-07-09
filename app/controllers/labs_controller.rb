@@ -17,7 +17,7 @@ end
 
 private
 def lab_params
-  params.require(:lab).permit(:principal_investigator, :location)
+  params.require(:lab).permit(:principal_investigator, :institution)
 end
 
 end
