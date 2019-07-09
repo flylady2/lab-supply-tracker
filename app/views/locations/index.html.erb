@@ -1,9 +1,15 @@
-<h1>Reagents for the <%=@lab.principal_investgator%> Lab are stored in these locations:
+<h1>Reagents for the <%=@lab.principal_investigator%> Lab are stored in these locations:
 
     <ul>
-    <% @lab.locations.each do |location| %>
+    <% @locations.each do |location| %>
       <li>
         <%= location.name %><br>
+
+        <% location.reagents.each do |reagent| %>
+
+          <%= reagent.name %> <br>
+  
+        <% end %>
       </li>
     <% end %>
     </ul>
