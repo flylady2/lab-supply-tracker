@@ -11,24 +11,31 @@ class ReagentsController < ApplicationController
 
   def new
     #nested route
-    if params[:lab_id] && lab = Lab.find_by_id(params[:lab_id])
-      @reagent = lab.reagents.build
+    if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+      @reagent = @lab.reagents.build
     else
-      redirect_to '/'
+      @reagent = Reagent.new
+      @reagent.build_lab
     end
   end
 
   def create
-    @reagent = lab.reagents.build(reagent_params)
+    if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+      @reagent = @lab.reagents.build(reagent_params)
+    end
     if @reagent.save
-      redirect_to lab_reagent_path(@reagent)
+      redirect_to lab_reagent_path(@lab, @reagent)
     else
       render :new
     end
   end
 
+  def show
+    @reagent = Reagent.find(params[:id])
+  end
+
   private
   def reagent_params
-    params.require(:reagent).permit(:lab_id, :name, :category, :source, :unit, :quantity, :location)
+    params.require(:reagent).permit(:lab_id, :name, :category, :source, :unit, :quantity, :location_id)
   end
 end

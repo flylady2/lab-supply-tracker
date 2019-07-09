@@ -15,10 +15,10 @@
    <%= f.text_field :unit%>
     <br><br>
     <%= f.label :quantity%>
-    <%= f.float :quantity%>
+    <%= f.number_field :quantity%>
     <br><br>
    <%= f.label :location_id, "Select location" %>
-   <%= f.collection_select :Location_id, Location.all, :id, :location %>
+   <%= f.collection_select :location_id, Location.all, :id, :name %>
 
 
 
