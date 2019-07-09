@@ -1,4 +1,6 @@
 class Location < ApplicationRecord
-  belongs_to :laboratory
+  belongs_to :lab
   has_many :reagents
+
+  
 end
