@@ -13,15 +13,15 @@ end
 def create
   #byebug
   if params[:lab_id] && lab = Lab.find_by_id(params[:lab_id])
-    @user = lab.build_user(user_params)
+    @user = @lab.build_user(user_params)
   else
     @user = User.new(user_params)
   end
   #byebug
   if @user.save
     session[:user_id] = @user.id
-    byebug
-    redirect_to user_path(@user)
+  
+    redirect_to lab_path(@user.lab_id)
   else
     render :new
   end
