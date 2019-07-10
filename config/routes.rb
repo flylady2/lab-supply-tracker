@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :locations
   resources :reagent_uses
   resources :reagents
+  resources :reagents, only: [:show] do
+    resources :reagent_uses
+  end
   resources :users
   resources :labs
   resources :labs, only: [:show] do
