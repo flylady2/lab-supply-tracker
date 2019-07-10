@@ -7,8 +7,8 @@
 
         <% location.reagents.each do |reagent| %>
 
-          <%= reagent.name %> <br>
-  
+          <%= link_to reagent.name, reagent_path(reagent) %> <br>
+
         <% end %>
       </li>
     <% end %>

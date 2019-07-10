@@ -1,0 +1,20 @@
+<%= form_for [@reagent, @reagent_use] do |f| %>
+
+  <%= f.hidden_field :reagent_id %>
+
+
+    <br><br>
+   <%= f.label :unit%>
+   <%= f.text_field :unit%>
+    <br><br>
+    <%= f.label :quantity%>
+    <%= f.number_field :quantity%>
+    <br><br>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+
+
+
+   <%= f.submit "Use Reagent" %>
+
+<% end %>

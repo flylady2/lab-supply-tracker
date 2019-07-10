@@ -1,1 +1,10 @@
-Reagent
+
+
+   Reagent:<%= @reagent.name %>
+   <br><br>
+   Current Amount:<%= @reagent.quantity%>X<%= @reagent.unit%>
+
+    <br><br>
+    Location:<%= @reagent.location.name%>
+
+  <%= link_to "Go to this form to use this reagent:", new_reagent_reagent_use_path(@reagent) %>
