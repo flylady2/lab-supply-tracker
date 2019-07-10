@@ -6,7 +6,7 @@ end
 #load login form
 def new
   @user = User.new
-  render :/login
+  #render :login
 end
 
 #login user
@@ -16,8 +16,9 @@ def create
     session[:user_id] = @user.id
     redirect_to user_path(@user)
   else
-    redirect_to '/login'
+    redirect_to 'login'
   end
+end
 
   #logout user
   def destroy

@@ -17,10 +17,11 @@ def create
   else
     @user = User.new(user_params)
   end
-  byebug
+  #byebug
   if @user.save
     session[:user_id] = @user.id
-    redirect_to users_home_path(@user)
+    byebug
+    redirect_to user_path(@user)
   else
     render :new
   end
@@ -28,6 +29,10 @@ def create
     #flash[:message] = "You must be a member of a participating lab to sign up"
   #  redirect_to '/' #home or welcome page
   #end
+end
+
+def show
+  @user = User.find_by_id(params[:id])
 end
 
 
