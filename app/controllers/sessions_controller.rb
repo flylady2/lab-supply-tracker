@@ -5,8 +5,7 @@ end
 
 #load login form
 def new
-  @user = User.new
-  #render :login
+  render :login
 end
 
 #login user
