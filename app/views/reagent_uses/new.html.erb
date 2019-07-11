@@ -2,11 +2,13 @@
 
   <%= f.hidden_field :reagent_id %>
 
+<h1>Reagent: <%=@reagent.name%> </h1>
+    <br><br>
+  <h1>Reagent Units: <%=@reagent.unit%> </h1>
 
     <br><br>
-   <%= f.label :unit%>
-   <%= f.text_field :unit%>
-    <br><br>
+    <h1>Quantity Available: <%=@reagent.quantity%></h1>
+    <h1>Quantity to be used:</h1>
     <%= f.label :quantity%>
     <%= f.number_field :quantity%>
     <br><br>

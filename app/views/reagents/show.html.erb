@@ -1,5 +1,7 @@
 
-
+  <% if flash[:message] %>
+    <div class="message"><%=flash[:message] %></div>
+  <% end %>
    Reagent:<%= @reagent.name %>
    <br><br>
    Current Amount:<%= @reagent.quantity%>X<%= @reagent.unit%>
