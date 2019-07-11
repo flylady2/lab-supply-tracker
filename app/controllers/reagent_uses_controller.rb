@@ -4,7 +4,7 @@ class ReagentUsesController < ApplicationController
     #byebug
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
       user_id = current_user.id
-      @reagent_use = @reagent.reagent_use.build
+      @reagent_use = @reagent.reagent_uses.build
       #byebug
     #else
       #@reagent_use = ReagentUse.new
@@ -14,17 +14,20 @@ class ReagentUsesController < ApplicationController
 
   def create
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
+      user_id = current_user.id
       @reagent_use = @reagent.reagent_uses.build(reagent_use_params)
-    end
-    if @reagent_use.save
-      redirect_to reagent_path(@reagent)
-    else
-      render :new
+      #byebug
+    @reagent_use.save
+    flash[:message] = @reagent_use.enough
+    redirect_to reagent_path(@reagent)
+
     end
   end
 
+  #def update
+
   private
   def reagent_use_params
-    params.require(:reagent).permit(:reagent_id, :user_id, :unit, :quantity, :date)
+    params.require(:reagent_use).permit(:reagent_id, :user_id, :unit, :quantity, :date)
   end
 end
