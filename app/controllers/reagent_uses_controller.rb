@@ -3,6 +3,7 @@ class ReagentUsesController < ApplicationController
   def new
     #byebug
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
+      current_user = User.find_by(id: session[:user_id])
       user_id = current_user.id
       @reagent_use = @reagent.reagent_uses.build
       #byebug
@@ -14,10 +15,12 @@ class ReagentUsesController < ApplicationController
 
   def create
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
+      current_user = User.find_by(id: session[:user_id])
       user_id = current_user.id
       @reagent_use = @reagent.reagent_uses.build(reagent_use_params)
       #byebug
     @reagent_use.save
+    byebug
     flash[:message] = @reagent_use.enough
     redirect_to reagent_path(@reagent)
 
