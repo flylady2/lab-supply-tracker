@@ -20,10 +20,10 @@ def create
 end
 
   #logout user
-  def destroy
-    session.clear
-    redirect_to '/'
-  end
+def destroy
+  session.clear
+  redirect_to '/'
+end
 
 
 end
