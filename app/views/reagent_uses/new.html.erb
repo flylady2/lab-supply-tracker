@@ -1,6 +1,6 @@
 <%= form_for [@reagent, @reagent_use] do |f| %>
 
-  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :user_id, :value => @current_user.id %>
 
 <h1>Reagent: <%=@reagent.name%> </h1>
     <br><br>
