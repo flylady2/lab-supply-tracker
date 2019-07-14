@@ -3,13 +3,10 @@
     <ul>
     <% @locations.each do |location| %>
       <li>
-        <%= location.name %><br>
+        <%= link_to location.name, location_path(location) %><br>
 
-        <% location.reagents.each do |reagent| %>
-
-          <%= link_to reagent.name, reagent_path(reagent) %> <br>
-
-        <% end %>
-      </li>
     <% end %>
+      </li>
+
     </ul>
+<h1> Click on the link to see the reagents at each location </h1>
