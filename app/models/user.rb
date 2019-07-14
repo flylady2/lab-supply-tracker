@@ -7,5 +7,7 @@ class User < ApplicationRecord
 
   validates :name, :email, presence: true
   validates :email, uniqueness: true
+  validates :name, uniqueness: { scope: :lab_id, message: "Lab already has a user with this name."}
+
 
 end

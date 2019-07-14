@@ -1,0 +1,11 @@
+<h1>Reagents stored in the <%=@location.name%>:
+    <ul>
+    <% @location.reagents.each do |reagent| %>
+      <li>
+
+          <%= link_to reagent.name, reagent_path(reagent) %> <br>
+
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
