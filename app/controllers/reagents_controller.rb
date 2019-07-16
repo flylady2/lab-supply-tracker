@@ -1,10 +1,18 @@
 class ReagentsController < ApplicationController
 
   def index
-    #nested routes
-    if params[:lab_id] && lab = Lab.find_by_id(params[:lab_id])
-      @reagents = lab.reagents
+    #nested route
+    if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+      @reagents = @lab.reagents
+      if params[:name]
+        @reagents = @lab.reagents.search_by_name(params[:name])
+      else
+        @reagents = @lab.reagents
+      end
+
+
     else
+
       redirect_to '/'
     end
   end

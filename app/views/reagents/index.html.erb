@@ -1,11 +1,16 @@
-<h1>Reagents stored in the <%=@location.name%>:
-    <ul>
-    <% @location.reagents.each do |reagent| %>
+<h1>Reagent Search Form</h1>
+
+<%= form_tag(lab_reagents_path, method: "get") do %>
+
+<%= label_tag(:name, "Enter the name of the reagent") %>
+<%= text_field_tag(:name) %>
+<%= submit_tag("Search") %>
+<% end %>
+
+  <ul>
+    <% @reagents.each do |reagent| %>
       <li>
-
-          <%= link_to reagent.name, reagent_path(reagent) %> <br>
-
-        <% end %>
+        <%= link_to reagent.name, reagent_path(reagent) %> <br>
       </li>
     <% end %>
-    </ul>
+  </ul>
