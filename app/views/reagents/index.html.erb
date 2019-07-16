@@ -1,11 +1,3 @@
-<h1>Reagent Search Form</h1>
-
-<%= form_tag(lab_reagents_path, method: "get") do %>
-
-<%= label_tag(:name, "Enter the name of the reagent") %>
-<%= text_field_tag(:name) %>
-<%= submit_tag("Search") %>
-<% end %>
 
   <ul>
     <% @reagents.each do |reagent| %>

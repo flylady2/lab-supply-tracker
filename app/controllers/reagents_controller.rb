@@ -1,6 +1,17 @@
 class ReagentsController < ApplicationController
 
+  def search
+    #byebug
+    if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+      #byebug
+      render :search
+    else
+      redirect_to '/'
+    end
+  end
+
   def index
+    #byebug
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagents = @lab.reagents
@@ -9,11 +20,6 @@ class ReagentsController < ApplicationController
       else
         @reagents = @lab.reagents
       end
-
-
-    else
-
-      redirect_to '/'
     end
   end
 
@@ -41,6 +47,8 @@ class ReagentsController < ApplicationController
   def show
     @reagent = Reagent.find(params[:id])
   end
+
+
 
   private
   def reagent_params

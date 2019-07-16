@@ -1,8 +1,8 @@
 <h1>Reagent Search Form</h1>
 
-<%= form_tag("/@lab/reagents", method: "get") do %>
+<%= form_tag(lab_reagents_path, method: "get") do %>
 
-<%= label_tab(:name, "Enter the name of the reagent")
+<%= label_tag(:name, "Enter the name of the reagent") %>
 <%= text_field_tag(:name) %>
 <%= submit_tag("Search") %>
 <% end %>

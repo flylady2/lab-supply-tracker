@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :users
   resources :labs
   resources :labs, only: [:show] do
+    get 'reagents/search' => 'reagents#search'
     resources :reagents
+
     resources :locations
   end
 
