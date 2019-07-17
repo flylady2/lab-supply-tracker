@@ -1,6 +1,12 @@
-
+<% if flash[:message] %>
+  <div class="message"><%=flash[:message] %></div>
+<% end %>
 <% @user = User.find(session[:user_id]) %>
 
 <% if @lab.users.include?(@user) %>
   <%= render partial: 'home' %>
+<% end %>
+
+<% if @user.admin? %>
+  <%= render partial: 'new_reagent_link' %>
 <% end %>

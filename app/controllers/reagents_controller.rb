@@ -24,6 +24,10 @@ class ReagentsController < ApplicationController
   end
 
   def new
+    if !current_user.admin
+      flash[:message] = "You are not authorized to add a reagent"
+      redirect_to lab_path(Lab.find_by_id(params[:lab_id]))
+    end
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build
