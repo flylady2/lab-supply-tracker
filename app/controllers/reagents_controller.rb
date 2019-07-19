@@ -28,7 +28,6 @@ class ReagentsController < ApplicationController
       flash[:message] = "You are not authorized to add a reagent"
       redirect_to lab_path(Lab.find_by_id(params[:lab_id]))
     end
-    #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build
 
@@ -39,15 +38,16 @@ class ReagentsController < ApplicationController
   end
 
   def create
+
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build(reagent_params)
     end
+
     if @reagent.save
       #byebug
       redirect_to lab_reagent_path(@lab, @reagent)
     else
-      @reagent.build_category unless @reagent.category
-      byebug
+
       render :new
     end
   end

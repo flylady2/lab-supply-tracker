@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-
+  resources :categories
   resources :locations
   resources :reagent_uses
   resources :reagents
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :labs, only: [:show] do
     get 'reagents/search' => 'reagents#search'
     resources :reagents
-
+    resources :categories
     resources :locations
   end
 
