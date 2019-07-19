@@ -43,9 +43,11 @@ class ReagentsController < ApplicationController
       @reagent = @lab.reagents.build(reagent_params)
     end
     if @reagent.save
-      byebug
+      #byebug
       redirect_to lab_reagent_path(@lab, @reagent)
     else
+      @reagent.build_category unless @reagent.category
+      byebug
       render :new
     end
   end
@@ -63,6 +65,6 @@ class ReagentsController < ApplicationController
 
   private
   def reagent_params
-    params.require(:reagent).permit(:lab_id, :name, :category, :source, :unit, :quantity, :location_id)
+    params.require(:reagent).permit(:lab_id, :name, :category_id, :source, :unit, :quantity, :location_id)
   end
 end

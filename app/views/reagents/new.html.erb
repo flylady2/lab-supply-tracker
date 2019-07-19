@@ -5,9 +5,15 @@
    <%= f.label :name %>
    <%= f.text_field :name %>
    <br><br>
-   <%= f.label :category %>
-   <%= f.text_field :category %>
+   <%= f.label :category_id, "Select category" %>
+   <%= f.collection_select :category_id, Category.all, :id, :name %>
     <br><br>
+    <% if !params[:category_id] %>
+    Or create a new category:
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+    <% end %>
+
    <%= f.label :source %>
    <%= f.text_field :source %>
     <br><br>
