@@ -8,9 +8,9 @@ class Reagent < ApplicationRecord
   #accepts_nested_attributes_for :category
   #accepts_nested_attributes_for :location
 
-  def category_attributes(category_params)
+  def category_attributes=(category_params)
     category = Category.find_or_create_by(category_params)
-
+    self.category = category if category.valid?
   end
 
 

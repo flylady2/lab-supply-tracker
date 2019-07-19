@@ -8,6 +8,11 @@
    <%= f.label :category_id, "Select category" %>
    <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
     <br><br>
+    Or make a new category:
+    <%= f.fields_for :category do |category| %>
+      <%= category.label :name %>
+      <%= category.text_field :name %>
+    <% end %>
 
    <%= f.label :source %>
    <%= f.text_field :source %>

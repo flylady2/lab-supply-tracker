@@ -30,10 +30,12 @@ class ReagentsController < ApplicationController
     end
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build
+      @category = @reagent.build_category
 
     else
       @reagent = Reagent.new
       @reagent.build_lab
+      @category = @reagent.build_category
     end
   end
 
@@ -41,6 +43,7 @@ class ReagentsController < ApplicationController
 
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build(reagent_params)
+      
     end
 
     if @reagent.save
@@ -65,6 +68,6 @@ class ReagentsController < ApplicationController
 
   private
   def reagent_params
-    params.require(:reagent).permit(:lab_id, :name, :category_id, :source, :unit, :quantity, :location_id)
+    params.require(:reagent).permit(:lab_id, :name, :category_id, :source, :unit, :quantity, :location_id, category_attributes:[:name])
   end
 end
