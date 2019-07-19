@@ -8,6 +8,7 @@
     </ul>
   <% end %>
 
+
   <%= form_tag(lab_reagents_path(@lab), method: "get") do %>
 
   <%= label_tag(:name, "Enter the name of the reagent") %>
@@ -15,7 +16,7 @@
   <%= submit_tag("Search") %>
   <% end %>
 
-
+<%= link_to "Reagent Categories", categories_path %>
 
 <%= link_to "Reagent Locations", lab_locations_path(@lab) %>
 
