@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_204433) do
+ActiveRecord::Schema.define(version: 2019_07_19_002742) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "labs", force: :cascade do |t|
     t.string "principal_investigator"
@@ -41,15 +47,15 @@ ActiveRecord::Schema.define(version: 2019_07_12_204433) do
 
   create_table "reagents", force: :cascade do |t|
     t.string "name"
-    t.string "category"
     t.string "unit"
     t.float "quantity"
-    t.string "location"
     t.string "source"
     t.integer "lab_id"
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_reagents_on_category_id"
     t.index ["lab_id"], name: "index_reagents_on_lab_id"
     t.index ["location_id"], name: "index_reagents_on_location_id"
   end

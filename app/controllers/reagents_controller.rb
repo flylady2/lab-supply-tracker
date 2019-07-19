@@ -31,6 +31,7 @@ class ReagentsController < ApplicationController
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build
+
     else
       @reagent = Reagent.new
       @reagent.build_lab
@@ -42,6 +43,7 @@ class ReagentsController < ApplicationController
       @reagent = @lab.reagents.build(reagent_params)
     end
     if @reagent.save
+      byebug
       redirect_to lab_reagent_path(@lab, @reagent)
     else
       render :new
@@ -50,6 +52,11 @@ class ReagentsController < ApplicationController
 
   def show
     @reagent = Reagent.find(params[:id])
+  end
+
+  def delete
+    @reagent = Reagent.find(params[:id])
+    @reagent.destroy
   end
 
 
