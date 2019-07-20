@@ -7,6 +7,17 @@
       Email:<%= user.email %>
     </ul>
   <% end %>
+  <br><br>
+  <ul>
+  <% category_array.each do |category| %>
+    <li>
+      <% @category = category %>
+      <%= link_to @category.name, lab_category_path(@lab, @category) %>
+      </li>
+    <% end %>
+    </ul>
+
+  <br><br>
 
 
   <%= form_tag(lab_reagents_path(@lab), method: "get") do %>
@@ -16,7 +27,7 @@
   <%= submit_tag("Search") %>
   <% end %>
 
-<%= link_to "Reagent Categories", categories_path %>
+<%= link_to "Reagent Categories", lab_categories_path(@lab) %>
 
 <%= link_to "Reagent Locations", lab_locations_path(@lab) %>
 
