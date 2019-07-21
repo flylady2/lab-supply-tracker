@@ -1,5 +1,9 @@
 class ReagentUsesController < ApplicationController
 
+  def index
+  end
+
+
   def new
     @current_user = User.find_by(id: session[:user_id])
 
@@ -16,6 +20,7 @@ class ReagentUsesController < ApplicationController
   end
 
   def create
+    #byebug
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
 
       @reagent_use = @reagent.reagent_uses.build(reagent_use_params)
@@ -23,15 +28,18 @@ class ReagentUsesController < ApplicationController
     @reagent_use.save
     #byebug
     flash[:message] = @reagent_use.enough
-    redirect_to reagent_path(@reagent)
+    #byebug
+    redirect_to reagent_reagent_use_path(@reagent, @reagent_use)
 
     end
   end
 
-  #def update
+  def show
+    @reagent_use = ReagentUse.find(params[:id])
+  end
 
   private
   def reagent_use_params
-    params.require(:reagent_use).permit(:reagent_id, :user_id, :unit, :quantity, :date)
+    params.require(:reagent_use).permit(:reagent_id, :user_id, :lab_id, :unit, :quantity, :date)
   end
 end

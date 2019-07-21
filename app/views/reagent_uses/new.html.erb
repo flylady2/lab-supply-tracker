@@ -1,6 +1,7 @@
 <%= form_for [@reagent, @reagent_use] do |f| %>
 
   <%= f.hidden_field :user_id, :value => @current_user.id %>
+  <%= f.hidden_field :lab_id, :value => @current_user.lab_id %>
 
 <h1>Reagent: <%=@reagent.name%> </h1>
     <br><br>
@@ -11,6 +12,9 @@
     <h1>Quantity to be used:</h1>
     <%= f.label :quantity%>
     <%= f.number_field :quantity, step: 0.1 %>
+    <br><br>
+    <%= f.label :unit %>
+    <%= f.text_field :unit %>
     <br><br>
     <%= f.label :date %>
     <%= f.date_field :date %>
