@@ -5,8 +5,8 @@ class Reagent < ApplicationRecord
   has_many :reagent_uses
   has_many :users, through: :reagent_uses
 
-  #accepts_nested_attributes_for :category
-  #accepts_nested_attributes_for :location
+  validates :name, :unit, :quantity, :source, presence: true
+  
 
   def category_attributes=(category_params)
     category = Category.find_or_create_by(category_params)

@@ -40,10 +40,10 @@ class ReagentsController < ApplicationController
   end
 
   def create
-
+    
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build(reagent_params)
-      
+
     end
 
     if @reagent.save
