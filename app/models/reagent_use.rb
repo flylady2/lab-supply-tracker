@@ -1,8 +1,12 @@
 class ReagentUse < ApplicationRecord
   belongs_to :reagent
   belongs_to :user
+  belongs_to :lab
+
+  validates :unit, :quantity, :date, presence: true
 
   def enough
+    
     if self.quantity > self.reagent.quantity
       "Sorry. There is not enough of this reagent for your experiment."
     else

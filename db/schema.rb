@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_002742) do
+ActiveRecord::Schema.define(version: 2019_07_21_213333) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_07_19_002742) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lab_id"
+    t.index ["lab_id"], name: "index_reagent_uses_on_lab_id"
     t.index ["reagent_id"], name: "index_reagent_uses_on_reagent_id"
     t.index ["user_id"], name: "index_reagent_uses_on_user_id"
   end
