@@ -4,14 +4,11 @@ class CategoriesController < ApplicationController
     #byebug
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      @categories = @lab.reagents
-      #byebug
-      if params[:name]
-        @categories = @categories.search_by_name(params[:name])
-      else
-        @categories = @lab.reagents
-      end
+      @categories = @lab.categories_by_lab
+    else
+      @categories = Category.all
     end
+
   end
 
   def new
