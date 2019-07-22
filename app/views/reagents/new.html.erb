@@ -24,6 +24,9 @@
     <%= f.label :quantity%>
     <%= f.number_field :quantity, step: 0.1 %>
     <br><br>
+    <%= f.label :trigger%>
+    <%= f.number_field :trigger, step: 0.1 %>
+    <br><br>
    <%= f.label :location_id, "Select location" %>
    <%= f.collection_select :location_id, Location.all, :id, :name %>
 

@@ -8,8 +8,11 @@ class ReagentUse < ApplicationRecord
   def enough
 
       self.reagent.update(:quantity => (self.reagent.quantity) - (self.quantity))
-      #byebug
-      "Thanks for registering your reagent use!"
 
+      if self.reagent.quantity < self.reagent.trigger
+        "This reagent needs to be ordered."
+      else
+        "Thanks for registering your reagent use!"
+      end
   end
 end

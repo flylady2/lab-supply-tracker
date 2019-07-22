@@ -40,7 +40,7 @@ class ReagentsController < ApplicationController
   end
 
   def create
-    
+
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build(reagent_params)
 
@@ -68,6 +68,6 @@ class ReagentsController < ApplicationController
 
   private
   def reagent_params
-    params.require(:reagent).permit(:lab_id, :name, :category_id, :source, :unit, :quantity, :location_id, category_attributes:[:name])
+    params.require(:reagent).permit(:lab_id, :name, :category_id, :source, :unit, :quantity, :trigger, :location_id, category_attributes:[:name])
   end
 end
