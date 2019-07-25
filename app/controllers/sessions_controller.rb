@@ -20,10 +20,24 @@ def create
   end
 end
 
+def oauth_login
+  @user = User.from_omniauth(auth)
+  @user.save
+  session[:user_id] = @user.id
+  #byebug
+  redirect_to lab_path(@user.lab_id)
+end
+
   #logout user
 def destroy
   session.clear
   redirect_to '/'
+end
+
+private
+
+def auth
+  request.env['omniauth.auth']
 end
 
 
