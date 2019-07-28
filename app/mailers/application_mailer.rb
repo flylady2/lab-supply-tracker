@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Lab Supply Tracker'
+  default from: 'flyladydev@gmail.com'
   layout 'mailer'
 end
