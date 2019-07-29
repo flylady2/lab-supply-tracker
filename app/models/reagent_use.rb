@@ -12,8 +12,8 @@ class ReagentUse < ApplicationRecord
       if self.reagent.quantity < self.reagent.trigger
         "This reagent needs to be ordered."
         #byebug
-        
-        UserMailer.with(user: self.user, reagent: self.reagent).trigger_email.deliver_now
+
+        UserMailer.with(user: self.user, reagent: self.reagent, lab: self.reagent.lab).trigger_email.deliver_now
       else
         "Thanks for registering your reagent use!"
       end

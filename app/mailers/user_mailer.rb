@@ -9,6 +9,7 @@ class UserMailer < ApplicationMailer
   def trigger_email
     @user = params[:user]
     @reagent = params[:reagent]
-    mail(to: @user.email, subject: "This reagent needs to be ordered.")
+    @lab = params[:lab]
+    mail(to: @lab.users.where(admin: true).pluck(:email), subject: "This reagent needs to be ordered.")
   end
 end
