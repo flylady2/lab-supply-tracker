@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
  gem 'activerecord-session_store'
+ gem 'omniauth-rails_csrf_protection', '~> 0.1.2'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
