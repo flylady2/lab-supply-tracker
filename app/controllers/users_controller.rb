@@ -16,11 +16,13 @@ def create
     @user = @lab.build_user(user_params)
   else
     @user = User.new(user_params)
+    #put choose_lab route here
   end
   #byebug
   if @user.save
     session[:user_id] = @user.id
     UserMailer.with(user: @user).welcome_email.deliver_now
+    UserMailer.with(user: @user, lab: @user.lab).new_user_notification_email.deliver_now
     redirect_to lab_path(@user.lab_id)
   else
     render :new

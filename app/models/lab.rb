@@ -15,4 +15,8 @@ class Lab < ApplicationRecord
     @categories.uniq
   end
 
+  def admin_emails
+    self.users.where(admin: true).pluck(:email)
+  end
+
 end
