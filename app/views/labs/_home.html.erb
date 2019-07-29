@@ -8,6 +8,7 @@
     </ul>
   <% end %>
   <br><br>
+  <h2>Find reagents by category:</h2>
   <ul>
   <% category_array.each do |category| %>
     <li>
@@ -19,22 +20,18 @@
 
   <br><br>
 
-
   <%= form_tag(lab_reagents_path(@lab), method: "get") do %>
 
-  <%= label_tag(:name, "Enter the name of the reagent") %>
+  <h2><%= label_tag(:name, "Search for a reagent by name") %></h2>
   <%= text_field_tag(:name) %>
   <%= submit_tag("Search") %>
   <% end %>
 
-<%= link_to "Reagent Categories", lab_categories_path(@lab) %>
-
+<h2>See where reagents are located:</h2>
 <%= link_to "Reagent Locations", lab_locations_path(@lab) %>
-
-<%= link_to "Reagent Search", lab_reagents_search_path(@lab) %>
 
 
     <br><br>
-    <%= link_to "Create a new location", new_lab_location_path(@lab) %>
+  
 
     <%= link_to "Log out", logout_path, method: :delete %>

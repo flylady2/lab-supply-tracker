@@ -1,3 +1,7 @@
+<% if flash[:message] %>
+  <div class="message"><%=flash[:message] %></div>
+<% end %>
+
 <h1>Welcome to the Lab Supply Tracker!</h1>
 <br>
 <h2>If your lab is using this app you can <%= link_to "Sign up", signup_path %> as a user.</h2>

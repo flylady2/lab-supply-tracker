@@ -12,7 +12,12 @@ def create
 end
 
 def show
-  @lab = Lab.find_by_id(params[:id])
+  if logged_in
+    @lab = Lab.find_by_id(params[:id])
+  else
+    flash[:message] = "You must be logged in to view your lab page."
+    redirect_to '/'
+  end
 end
 
 private
