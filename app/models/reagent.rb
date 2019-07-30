@@ -6,7 +6,7 @@ class Reagent < ApplicationRecord
   has_many :users, through: :reagent_uses
 
   validates :name, :unit, :quantity, :source, presence: true
-  
+
 
   def category_attributes=(category_params)
     category = Category.find_or_create_by(category_params)
@@ -18,6 +18,6 @@ class Reagent < ApplicationRecord
     #Reagent.arel_table[:name].lower.matches("%#{search_name.downcase}%")
   #end
 
-  scope :search_by_name, -> (search_name){where('lower(name) = ?', search_name.downcase)}
+  scope :search_by_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
 
 end

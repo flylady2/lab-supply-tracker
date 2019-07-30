@@ -1,8 +1,15 @@
-
+<% if flash[:message] %>
+  <div class="message"><%=flash[:message] %></div>
+<% end %>
   <ul>
+    <% #byebug %>
     <% @reagents.each do |reagent| %>
       <li>
         <%= link_to reagent.name, reagent_path(reagent) %> <br>
       </li>
     <% end %>
   </ul>
+
+  <% if @reagents == []%>
+    <%= "Sorry, #{@lab.principal_investigator} Lab does not have that reagent." %>
+  <% end %>

@@ -19,6 +19,7 @@ class ReagentsController < ApplicationController
         @reagents = @lab.reagents.search_by_name(params[:name])
       else
         @reagents = @lab.reagents
+        #flash[:message] = "Sorry, #{@lab.principal_investigator} Lab does not have that reagent."
       end
     end
   end
