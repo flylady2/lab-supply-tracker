@@ -1,6 +1,6 @@
 <h1>Welcome to the <%=@lab.principal_investigator%> Lab!</h1>
 
-<h2><%=@lab.principal_investigator%> Lab members:</h2>
+<h2><%=link_to "See #{@lab.principal_investigator} Lab members", lab_users_path(@lab)%></h2>
   <% @lab.users.each do |user| %>
     <ul>
       Name:<%= user.name %><br>

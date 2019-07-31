@@ -1,0 +1,7 @@
+<h2><%=@lab.principal_investigator%> Lab members:</h2>
+  <% @lab.users.each do |user| %>
+    <ul>
+      Name:<%= user.name %><br>
+      Email:<%= user.email %>
+    </ul>
+  <% end %>

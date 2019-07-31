@@ -21,11 +21,12 @@ Rails.application.routes.draw do
   resources :users
   resources :labs
   resources :labs, only: [:show] do
-    get 'reagents/search' => 'reagents#search'
+    get 'reagents/request' => 'reagents#request'
     resources :reagents
     resources :categories
     resources :locations
     resources :reagent_uses
+    resources :users
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

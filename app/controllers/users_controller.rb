@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
-#def index
-  #@trainers = Trainer.all
-#end
+def index
+  if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+    @users = @lab.users
+  end
+end
+
 
 #loading the signup form
 def new
