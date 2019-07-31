@@ -6,9 +6,10 @@ class User < ApplicationRecord
   has_many :reagent_uses
   has_many :reagents, through: :reagent_uses
 
-  validates :name, :email, presence: true
-  validates :email, uniqueness: true
-  validates :name, uniqueness: { scope: :lab_id, message: "Lab already has a user with this name."}
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :email, uniqueness: true #{message: "That email is already in use."}
+  validates :name, uniqueness: { scope: :lab_id} #, message: "Lab already has a user with this name."}
 
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
@@ -17,4 +18,6 @@ class User < ApplicationRecord
       user.password = SecureRandom.hex
     end
   end
+
+  scope :order_by_name, -> {order(:name)}
 end

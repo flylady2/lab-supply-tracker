@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 def index
   if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-    @users = @lab.users
+    @users = @lab.users.order_by_name
   end
 end
 

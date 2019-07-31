@@ -1,6 +1,7 @@
-<% if object.errors.any? %>
-  <dif id="error_explanation">
-      <h2><%= pluralize(object.errors.count, "error") %> prohibited this object from being saved:</h2>
+<% if object %>
+  <% if object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(object.errors.count, "error") %> prohibited this operation.</h2>
 
       <ul>
       <% object.errors.full_messages.each do |msg| %>
@@ -9,3 +10,4 @@
       </ul>
     </div>
   <% end %>
+<% end %>

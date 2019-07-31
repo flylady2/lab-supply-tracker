@@ -1,7 +1,3 @@
-<% if flash[:message] %>
-  <div class="message"><%=flash[:message] %></div>
-<% end %>
-
 <h1>Welcome to the Lab Supply Tracker!</h1>
 <br>
 <h2>If your lab is using this app you can <%= link_to "Sign up", signup_path %> as a user.</h2>
@@ -9,5 +5,5 @@
 <h2>Already a user? <%= link_to "Log in", login_path %> here.</h2>
 <br><br>
 OR:
-<br>
-  <%= link_to "Log in with Google!", '/auth/google_oauth2', method: :post %>
+<br><br>
+  <h3><%= link_to "Log in with Google!", '/auth/google_oauth2', method: :post %></h3>
