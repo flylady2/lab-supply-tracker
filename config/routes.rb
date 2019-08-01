@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :users
   resources :labs
   resources :labs, only: [:show] do
-    get 'reagents/request' => 'reagents#request'
+    get 'reagents/ask' => 'reagents#ask'
     resources :reagents
     resources :categories
     resources :locations

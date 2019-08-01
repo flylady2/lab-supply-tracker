@@ -6,8 +6,7 @@ class User < ApplicationRecord
   has_many :reagent_uses
   has_many :reagents, through: :reagent_uses
 
-  validates :name, presence: true
-  validates :email, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true #{message: "That email is already in use."}
   validates :name, uniqueness: { scope: :lab_id} #, message: "Lab already has a user with this name."}
 

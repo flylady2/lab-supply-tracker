@@ -1,12 +1,13 @@
 class ReagentsController < ApplicationController
 
-  #def request
+  def ask
     #if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
     #if params[:name]
       #UserMailer.with(user: @user, lab: @user.lab).request_reagent_email.deliver_now
 
       #byebug
-      #render :request
+      render :ask
+    end
     #else
       #redirect_to '/'
     #end
@@ -21,7 +22,7 @@ class ReagentsController < ApplicationController
         @reagents = @lab.reagents.search_by_name(params[:name])
       else
         @reagents = @lab.reagents
-        #flash[:message] = "Sorry, #{@lab.principal_investigator} Lab does not have that reagent."
+
       end
     else
       redirect_to '/'

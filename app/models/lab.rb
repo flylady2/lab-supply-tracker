@@ -5,7 +5,7 @@ class Lab < ApplicationRecord
   has_many :reagent_uses
 
   validates :principal_investigator, :institution, presence: true
-  validates :principal_investigator, uniqueness: { scope: :institution, message: "Institution already has a principal investigator with this name."}
+  validates :principal_investigator, uniqueness: { scope: :institution} #, message: "Institution already has a principal investigator with this name."}
 
   def categories_by_lab
     @categories = []

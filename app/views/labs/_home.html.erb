@@ -1,12 +1,7 @@
 <h1>Welcome to the <%=@lab.principal_investigator%> Lab!</h1>
 
 <h2><%=link_to "See #{@lab.principal_investigator} Lab members", lab_users_path(@lab)%></h2>
-  <% @lab.users.each do |user| %>
-    <ul>
-      Name:<%= user.name %><br>
-      Email:<%= user.email %>
-    </ul>
-  <% end %>
+
   <br><br>
   <h2>Find reagents by category:</h2>
   <ul>
@@ -31,5 +26,6 @@
 <%= link_to "Reagent Locations", lab_locations_path(@lab) %>
 
     <br><br>
-
+<%= link_to "Reagent Ask", lab_reagents_ask_path(@lab) %>
+<br><br>
     <%= link_to "Log out", logout_path, method: :delete %>

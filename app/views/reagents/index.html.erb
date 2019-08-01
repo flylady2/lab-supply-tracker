@@ -12,5 +12,4 @@
 
   <% if @reagents == [] %>
     <%= "Sorry, #{@lab.principal_investigator} Lab does not have that reagent." %>
-    <%= link_to "Click here to request this reagent", lab_reagents_request_path(@lab) %>
   <% end %>
