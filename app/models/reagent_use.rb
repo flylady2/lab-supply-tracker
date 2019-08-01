@@ -18,4 +18,9 @@ class ReagentUse < ApplicationRecord
         "Thanks for registering your reagent use!"
       end
   end
+
+  def user_name=()
+    user = User.find_by_id(self.user_id)
+    user_name = user.name
+  end
 end

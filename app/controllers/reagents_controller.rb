@@ -3,10 +3,15 @@ class ReagentsController < ApplicationController
   def ask
     #if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
     #if params[:name]
-      #UserMailer.with(user: @user, lab: @user.lab).request_reagent_email.deliver_now
 
+      #UserMailer.with(user: @user, lab: @user.lab).request_reagent_email.deliver_now
+      @lab = Lab.find_by_id(params[:lab_id])
+      if params[:lab_id] && params[:name]
       #byebug
-      render :ask
+        UserMailer.with(user: current_user, lab: @lab, name: params[:name]).ask_email.deliver_now
+      end
+      flash[:message] = "Your reagent request has been sent."
+      redirect_to lab_path(@lab)
     end
     #else
       #redirect_to '/'

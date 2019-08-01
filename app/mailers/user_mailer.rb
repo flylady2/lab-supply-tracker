@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
     @user = params[:user]
     @reagent = params[:reagent]
     @lab = params[:lab]
-    mail(to: @lab.admin_emails, subject: "This reagent needs to be ordered.")
+    mail(to: @lab.admin_emails, subject: "A reagent needs to be ordered.")
   end
 
   def new_user_notification_email
@@ -18,5 +18,12 @@ class UserMailer < ApplicationMailer
     #@reagent = params[:reagent]
     @lab = params[:lab]
     mail(to: @lab.admin_emails, subject: "New user signed up for Lab Supply Tracker.")
+  end
+
+  def ask_email
+    @user = params[:user]
+    @name = params[:name]
+    @lab = params[:lab]
+    mail(to: @lab.admin_emails, subject: "A reagent has been requested.")
   end
 end

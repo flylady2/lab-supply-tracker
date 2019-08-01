@@ -12,4 +12,12 @@
 
   <% if @reagents == [] %>
     <%= "Sorry, #{@lab.principal_investigator} Lab does not have that reagent." %>
+    <%= "Request Reagent:" %>
+    <%= form_tag(lab_reagents_ask_path, method: "get") do %>
+
+    <%= label_tag(:name, "Enter the name of the reagent") %>
+    <%= text_field_tag(:name) %>
+    <%= submit_tag("Request Reagent") %>
+    <% end %>
+
   <% end %>
