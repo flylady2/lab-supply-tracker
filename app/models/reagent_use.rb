@@ -19,8 +19,5 @@ class ReagentUse < ApplicationRecord
       end
   end
 
-  def user_name=()
-    user = User.find_by_id(self.user_id)
-    user_name = user.name
-  end
+
 end

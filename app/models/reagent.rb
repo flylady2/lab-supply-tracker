@@ -5,7 +5,7 @@ class Reagent < ApplicationRecord
   has_many :reagent_uses
   has_many :users, through: :reagent_uses
 
-  validates :name, :unit, :quantity, :source, presence: true
+  validates :name, :unit, :quantity, :source, :trigger, presence: true
 
 
   def category_attributes=(category_params)
@@ -13,7 +13,7 @@ class Reagent < ApplicationRecord
     self.category = category if category.valid?
   end
 
-  
+
 
   #def self.search_by_name(search_name)
     #Reagent.arel_table[:name].lower.matches("%#{search_name.downcase}%")

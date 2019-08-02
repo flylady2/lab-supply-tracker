@@ -2,6 +2,7 @@
   <% if flash[:message] %>
     <div class="message"><%=flash[:message] %></div>
   <% end %>
+
    Reagent:<%= @reagent.name %>
    <br><br>
    Current Amount:<%= @reagent.quantity%>X<%= @reagent.unit%>
@@ -10,3 +11,7 @@
     Location:<%= @reagent.location.name%>
 
   <%= link_to "Go to this form to use this reagent:", new_reagent_reagent_use_path(@reagent) %>
+
+  <% if @user.admin? %>
+    <%= link_to "Edit this reagent", edit_reagent_path(@reagent) %>
+  <% end %>
