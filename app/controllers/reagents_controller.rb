@@ -40,7 +40,7 @@ class ReagentsController < ApplicationController
       flash[:message] = "You are not authorized to add a reagent"
       redirect_to lab_path(Lab.find_by_id(params[:lab_id]))
     end
-    set_reagent_lab
+    #set_reagent_lab
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build
       @category = @reagent.build_category
@@ -53,12 +53,12 @@ class ReagentsController < ApplicationController
   end
 
   def create
-
+    byebug
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build(reagent_params)
-
+    else
+      @reagent = Reagent.new(reagent_params)
     end
-
     if @reagent.save
       #byebug
       redirect_to lab_reagent_path(@lab, @reagent)

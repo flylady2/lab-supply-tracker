@@ -1,4 +1,8 @@
+<%= render partial: "layouts/errors", locals: { object: @reagent } %>
+
 <%= form_for [@lab, @reagent] do |f| %>
+
+
 
    <%= f.label :name %>
    <%= f.text_field :name %>
