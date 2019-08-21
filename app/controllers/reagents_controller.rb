@@ -53,7 +53,7 @@ class ReagentsController < ApplicationController
   end
 
   def create
-    byebug
+    #byebug
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent = @lab.reagents.build(reagent_params)
     else
@@ -70,12 +70,12 @@ class ReagentsController < ApplicationController
 
   def show
 
-    @reagent = Reagent.find(params[:id])
+    set_reagent
     @user = current_user
   end
 
   def edit
-    @reagent = Reagent.find(params[:id])
+    set_reagent
     @lab = Lab.find(@reagent.lab_id)
     #if !@lab.users.include?(current_user) ||
     if !current_user.admin
@@ -87,7 +87,7 @@ class ReagentsController < ApplicationController
   end
 
   def update
-    @reagent = Reagent.find(params[:id])
+    set_reagent
     if @reagent.update(reagent_params)
       redirect_to reagent_path(@reagent)
     else
@@ -96,7 +96,7 @@ class ReagentsController < ApplicationController
   end
 
   def delete
-    @reagent = Reagent.find(params[:id])
+    set_reagent
     @reagent.destroy
   end
 
@@ -105,6 +105,10 @@ class ReagentsController < ApplicationController
   private
   def reagent_params
     params.require(:reagent).permit(:lab_id, :name, :category_id, :source, :unit, :quantity, :trigger, :location_id, category_attributes:[:name])
+  end
+
+  def set_reagent
+    @reagent = Reagent.find(params[:id])
   end
 
   def set_reagent_lab

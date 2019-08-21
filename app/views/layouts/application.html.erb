@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <% if logged_in %>
+    <nav class='navbar'>
+      <%= link_to "Log out", logout_path, method: :delete, class:'button' %>
+      <%= go_home %>
+    <% end %>
+    <div class='container'>
     <%= yield %>
+    </div>
   </body>
 </html>
