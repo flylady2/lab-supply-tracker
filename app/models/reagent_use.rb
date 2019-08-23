@@ -19,14 +19,10 @@ class ReagentUse < ApplicationRecord
       else
         "Thanks for registering your reagent use!"
       end
-        scope :search_by_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
-        scope :search_by_reagent, -> (search_reagent){where('lower(reagent) like ?', "%#{search_reagent.downcase}%")}
-
-
   end
 
 
-
+  scope :reagent_id, -> (reagent_id){where reagent_id: reagent_id }
 
 
 end
