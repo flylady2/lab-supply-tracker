@@ -1,5 +1,10 @@
 class ReagentUsesController < ApplicationController
 
+  if params[:reagent]
+    @reagent = @lab.reagents.search_by_name(params[:reagent])
+    @reagent_uses = @lab.reagent_uses.search_by_reagent(reagent.id)
+  end
+
   def index
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @reagent_uses = @lab.reagent_uses

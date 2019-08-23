@@ -10,8 +10,9 @@
   </head>
 
   <body>
-    <% if logged_in %>
+
     <nav class='navbar'>
+    <% if logged_in %>
       <%= link_to "Log out", logout_path, method: :delete, class:'button' %>
       <%= go_home %>
     <% end %>

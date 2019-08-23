@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  skip_before_action :require_login, only: [:new, :create]
 def index
   if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
     @users = @lab.users.order_by_name
