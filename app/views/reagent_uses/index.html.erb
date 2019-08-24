@@ -1,3 +1,6 @@
+<% if flash[:message] %>
+  <div class="message"><%=flash[:message] %></div>
+<% end %>
 <ul>
   <% @reagent_uses.order(date: :desc).each do |use| %>
   <li>Reagent:<%=use.reagent.name %></li>

@@ -19,4 +19,5 @@ class User < ApplicationRecord
   end
 
   scope :order_by_name, -> {order(:name)}
+  scope :search_by_user_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
 end
