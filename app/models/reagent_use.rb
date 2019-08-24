@@ -21,6 +21,11 @@ class ReagentUse < ApplicationRecord
       end
   end
 
+  #def reagent_name
+  #  Reagent.find(reagent_id).name
+#  end
+
+
 
   scope :search_by_reagent_id, -> (reagent_id){where reagent_id: reagent_id }
   scope :search_by_user_id, -> (user_id){where user_id: user_id }

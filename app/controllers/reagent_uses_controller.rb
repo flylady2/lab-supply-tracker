@@ -6,37 +6,42 @@ class ReagentUsesController < ApplicationController
 #  end
 
   def index
+
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+      #byebug
       if params[:reagent]
         reagent = @lab.reagents.search_by_name(params[:reagent]).first
-        byebug
+        
         if reagent
           @reagent_uses = ReagentUse.search_by_reagent_id(reagent.id)
         else
           flash[:message] = "There are no reagent use records for that reagent."
-          @reagent_uses = ReagentUse.all
-          #redirect_to lab_path(@lab)
+          @reagent_uses = @lab.reagent_uses
         end
+          #redirect_to lab_path(@lab)
+      else
+        @reagent_uses = @lab.reagent_uses
+      end
       #elsif params[:user]
         #@user
-      else
+      #else
 
-        @reagent_uses = @lab.reagent_uses
-      end
-      if params[:user]
-        user = @lab.users.search_by_user_name(params[:user]).first
-        if user
+        #@reagent_uses = @lab.reagent_uses
+      #end
+      #if params[:user]
+        #user = @lab.users.search_by_user_name(params[:user]).first
+        #if user
           #byebug
-          @reagent_uses = ReagentUse.search_by_user_id(user.id)
-        else
-          flash[:message] = "There are no reagent use records for that user."
-          @reagent_uses = ReagentUse.all
+          #@reagent_uses = ReagentUse.search_by_user_id(user.id)
+        #else
+          #flash[:message] = "There are no reagent use records for that user."
+        #  @reagent_uses = ReagentUse.all
           #redirect_to lab_path(@lab)
-        end
-      else
+        #end
+      #else
 
-        @reagent_uses = @lab.reagent_uses
-      end
+      #  @reagent_uses = @lab.reagent_uses
+    #  end
     else
       @reagent_uses = ReagentUse.all
     end

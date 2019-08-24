@@ -1,4 +1,4 @@
 module ReagentUsesHelper
 
-  
+
 end
