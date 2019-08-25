@@ -21,13 +21,18 @@ class ReagentUse < ApplicationRecord
       end
   end
 
-  #def reagent_name
-  #  Reagent.find(reagent_id).name
+  def self.search_by_date(start_date, end_date)
+    #byebug
+    #start_date = params[:start_date]
+    #end_date = params[:end_date]
+    ReagentUse.where( "date BETWEEN ? and ? ", start_date, end_date)
+  end
 #  end
 
 
 
   scope :search_by_reagent_id, -> (reagent_id){where reagent_id: reagent_id }
   scope :search_by_user_id, -> (user_id){where user_id: user_id }
+
 
 end
