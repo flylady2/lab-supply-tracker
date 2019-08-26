@@ -14,7 +14,6 @@ class ReagentUse < ApplicationRecord
       if self.reagent.quantity < self.reagent.trigger
         "This reagent needs to be ordered."
         #byebug
-
         UserMailer.with(user: self.user, reagent: self.reagent, lab: self.reagent.lab).trigger_email.deliver_now
       else
         "Thanks for registering your reagent use!"
@@ -27,8 +26,6 @@ class ReagentUse < ApplicationRecord
     #end_date = params[:end_date]
     ReagentUse.where( "date BETWEEN ? and ? ", start_date, end_date)
   end
-#  end
-
 
 
   scope :search_by_reagent_id, -> (reagent_id){where reagent_id: reagent_id }
