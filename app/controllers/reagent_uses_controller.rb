@@ -9,7 +9,12 @@ class ReagentUsesController < ApplicationController
   def index
     #byebug
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      @reagent_uses = @lab.reagent_uses
+      if !params[:reagent]
+        @reagent_uses = @lab.reagent_uses
+      else
+        sorter
+      end
+      #@reagent_uses = @lab.reagent_uses
       #byebug
     #  if params[:reagent] != ""
     #    reagent = @lab.reagents.search_by_name(params[:reagent]).first
@@ -23,10 +28,11 @@ class ReagentUsesController < ApplicationController
       #  end
     #  end
 
-      if params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
+      #if params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
         #byebug
-        sorter
-      end
+
+    #else @reagent_uses = @lab.reagent_uses
+      #end
 
     #  if params[:consumer] != ""
       #byebug

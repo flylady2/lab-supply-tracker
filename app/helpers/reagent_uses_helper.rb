@@ -29,11 +29,14 @@ module ReagentUsesHelper
     elsif params[:start_date] != "" && params[:end_date] != ""
       #byebug
       reagent_uses = @lab.reagent_uses.search_by_date(params[:start_date], params[:end_date])
-      if reagent_uses
-        @reagent_uses = reagent_uses
-      else
+      #byebug
+      if reagent_uses == []
+
         flash[:message] = "There are no reagent use records for that time period."
         @reagent_uses = @lab.reagent_uses
+
+      else
+        @reagent_uses = reagent_uses
       end
     end
 
