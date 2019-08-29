@@ -1,1 +1,14 @@
-<%= @user.name %>
+Reagent Use Records for: <%= @user.name %>
+
+<% if flash[:message] %>
+  <div class="message"><%=flash[:message] %></div>
+<% end %>
+<ul>
+  <% @user.reagent_uses.order(date: :desc).each do |use| %>
+  <li>Reagent:<%=use.reagent.name %></li>
+  <li>Date:<%=use.date.strftime("%m/%d/%Y") %></li>
+  <li>Quantity:<%=use.quantity %></li>
+  <li>Unit:<%=use.unit %></li>
+  <br><br>
+  <% end %>
+</ul>

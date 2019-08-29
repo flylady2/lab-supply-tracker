@@ -1,6 +1,8 @@
 <h1>Welcome to the <%=@lab.principal_investigator%> Lab!</h1>
 
-<h2><%=link_to "See #{@lab.principal_investigator} Lab members", lab_users_path(@lab)%></h2>
+
+
+<%= link_to "View your reagent use records:", user_path(@current_user.id) %>
 
   <br><br>
   <h2>Find reagents by category:</h2>

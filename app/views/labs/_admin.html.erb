@@ -1,3 +1,5 @@
+<h2><%=link_to "See #{@lab.principal_investigator} Lab members", lab_users_path(@lab)%></h2>
+
 <h2><%= link_to "Add a new reagent", new_lab_reagent_path(@lab) %></h2>
 
 <h2><%= link_to "View reagent use registrations.", lab_reagent_uses_path(@lab) %></h2>

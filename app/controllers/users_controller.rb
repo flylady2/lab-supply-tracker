@@ -38,6 +38,12 @@ end
 
 def show
   @user = User.find_by_id(params[:id])
+  if current_user != @user
+    flash[:message] = "You are not authorized to view those records."
+    redirect_to lab_path(@current_user.lab_id)
+  else
+    render :show
+  end
 end
 
 

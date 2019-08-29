@@ -114,7 +114,7 @@ class ReagentsController < ApplicationController
   def set_reagent_lab
     @lab = Lab.find(params[:lab_id])
     if !@lab.users.include?(current_user)
-      flash[:message] = "Access to lab pages is restricted to members of that lab."
+      flash[:message] = "Access is restricted to members of the #{@lab.principal_investigator.name} lab."
       redirect_to '/'
     end
   end
