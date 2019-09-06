@@ -8,4 +8,5 @@ module ReagentsHelper
     category_array.uniq
   end
 
+
 end

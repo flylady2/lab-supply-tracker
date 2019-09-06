@@ -1,5 +1,5 @@
 class ReagentUsesController < ApplicationController
-  include ReagentUsesHelper
+  include ReagentUsesSorter
 
   #if params[:reagent]
   #  @reagent = @lab.reagents.search_by_name(params[:reagent])

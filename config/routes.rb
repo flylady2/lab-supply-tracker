@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   root 'sessions#welcome'
 
   get '/login' => 'sessions#new'
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :labs
   resources :labs, only: [:show] do
     get 'reagents/ask' => 'reagents#ask'
+    get 'admin' => 'labs#admin'
     resources :reagents
     resources :categories
     resources :locations

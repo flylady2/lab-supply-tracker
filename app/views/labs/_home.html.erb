@@ -1,33 +1,29 @@
 <h1>Welcome to the <%=@lab.principal_investigator%> Lab!</h1>
-
-
-
-<%= link_to "View your reagent use records:", user_path(@current_user.id) %>
-
-  <br><br>
-  <h2>Find reagents by category:</h2>
-  <ul>
-  <% category_array.each do |category| %>
-    <li>
-      <% @category = category %>
-      <%= link_to @category.name, lab_category_path(@lab, @category) %>
-      </li>
-    <% end %>
-    </ul>
-
-  <br><br>
-
-  <%= form_tag(lab_reagents_path(@lab), method: "get") do %>
-
-  <h2><%= label_tag(:name, "Search for a reagent by name") %></h2>
-  <%= text_field_tag(:name) %>
-  <%= submit_tag("Search") %>
-  <% end %>
-
-<h2>See where reagents are located:</h2>
-<%= link_to "Reagent Locations", lab_locations_path(@lab) %>
-
-    <br><br>
-<%= link_to "Reagent Ask", lab_reagents_ask_path(@lab) %>
 <br><br>
-    <%= link_to "Log out", logout_path, method: :delete %>
+<div class='container'>
+<h2>Find reagents by category:</h2>
+<ul>
+<% category_array.each do |category| %>
+  <li>
+    <% @category = category %>
+    <%= link_to @category.name, lab_category_path(@lab, @category) %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<br><br>
+<%= form_tag(lab_reagents_path(@lab), method: "get") do %>
+
+<h2><%= label_tag(:name, "Search for a reagent by name") %></h2>
+<%= text_field_tag(:name) %>
+<%= submit_tag("Search") %>
+<% end %>
+<br><br>
+
+<h2><%= link_to "See reagents by Location", lab_locations_path(@lab) %></h2>
+<br><br>
+<h2><%= link_to "View your reagent use records", user_path(@current_user.id) %></h2>
+
+<% if @user.admin? %>
+  <%= link_to "Admin functions", lab_admin_path(@lab) %>
+<% end %>

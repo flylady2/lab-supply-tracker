@@ -11,13 +11,15 @@
   </ul>
 
   <% if @reagents == [] %>
+    <div ='container'>
     <%= "Sorry, #{@lab.principal_investigator} Lab does not have that reagent." %>
-    <%= "Request Reagent:" %>
+    </div>
+    <br><br>
+    <div = 'container'>
     <%= form_tag(lab_reagents_ask_path, method: "get") do %>
-
-    <%= label_tag(:name, "Enter the name of the reagent") %>
-    <%= text_field_tag(:name) %>
-    <%= submit_tag("Request Reagent") %>
+      <%= label_tag(:name, "Request reagent:") %>
+      <%= text_field_tag(:name) %>
+      <%= submit_tag("Submit") %>
     <% end %>
-
+    <div/>
   <% end %>

@@ -6,7 +6,3 @@
 <% if @lab.users.include?(@user) %>
   <%= render partial: 'home' %>
 <% end %>
-
-<% if @user.admin? %>
-  <%= render partial: 'admin' %>
-<% end %>

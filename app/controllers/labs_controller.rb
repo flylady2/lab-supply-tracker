@@ -1,5 +1,13 @@
 class LabsController < ApplicationController
 
+  def admin
+    @lab = Lab.find_by(params[:lab_id])
+    if @lab.users.include?(current_user) && current_user.admin
+      render :admin
+    else
+      redirect_to '/'
+    end
+  end
 
 
   def new

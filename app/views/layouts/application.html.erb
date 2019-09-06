@@ -15,6 +15,9 @@
     <% if logged_in %>
       <%= link_to "Log out", logout_path, method: :delete, class:'button' %>
       <%= go_home %>
+        <% if @current_user.admin %>
+          <%= link_to "Admin Functions", lab_admin_path(@lab) %>
+        <% end %>
     <% end %>
     <div class='container'>
     <%= yield %>
