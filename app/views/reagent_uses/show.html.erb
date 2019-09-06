@@ -1,10 +1,11 @@
 <% if flash[:message] %>
   <div class="message"><%=flash[:message] %></div>
 <% end %>
+<br><br>
  Reagent:<%= @reagent_use.reagent.name %>
- <br><br>
+ <br>
  Amount Used:<%= @reagent_use.quantity%>X<%= @reagent_use.unit%>
-
-Date: <%= @reagent_use.date %>
-
+<br>
+Date: <%= @reagent_use.date.strftime("%m/%d/%Y") %>
+<br>
 User: <%= @reagent_use.user.name %>

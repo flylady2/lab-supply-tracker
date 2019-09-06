@@ -84,7 +84,7 @@ class ReagentUsesController < ApplicationController
     @reagent_use.save
     #byebug
     @reagent_use.enough
-    flash[:message] = "Thank you for registering your reagent use."#byebug
+    flash[:message] = "Thank you for recording your reagent use."#byebug
     #byebug
     redirect_to reagent_reagent_use_path(@reagent, @reagent_use)
 
