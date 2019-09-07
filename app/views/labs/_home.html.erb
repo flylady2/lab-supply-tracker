@@ -23,7 +23,3 @@
 <h2><%= link_to "See reagents by Location", lab_locations_path(@lab) %></h2>
 <br><br>
 <h2><%= link_to "View your reagent use records", user_path(@current_user.id) %></h2>
-
-<% if @user.admin? %>
-  <%= link_to "Admin functions", lab_admin_path(@lab) %>
-<% end %>

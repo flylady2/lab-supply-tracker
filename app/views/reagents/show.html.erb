@@ -3,17 +3,15 @@
     <div class="message"><%=flash[:message] %></div>
   <% end %>
 
-   Reagent:<%= @reagent.name %>
+   Reagent: <%= @reagent.name %>
    <br><br>
-   Current Amount:<%= @reagent.quantity%>X<%= @reagent.unit%>
+   Current Amount: <%= @reagent.quantity%>  <%= @reagent.unit%>
 
     <br><br>
-    Location:<%= @reagent.location.name%>
+    Location: <%= @reagent.location.name%>
 
   <%= link_to "Go to this form to use this reagent:", new_reagent_reagent_use_path(@reagent) %>
 
   <% if @user.admin? %>
     <%= link_to "Edit this reagent", edit_reagent_path(@reagent) %>
   <% end %>
-
-  

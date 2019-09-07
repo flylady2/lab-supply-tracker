@@ -13,9 +13,19 @@
    <%= f.password_field :password %>
 
    <%= f.label :lab_id, "Select your lab" %>
-   <%= f.collection_select :lab_id, Lab.all, :id, :principal_investigator %>
+   <%= f.collection_select :lab_id, Lab.all, :id, :principal_investigator, include_blank: true %>
 
-   Admin: <%= f.check_box :admin %>
+  Admin: <%= f.check_box :admin %>
+
+   Or sign up a new lab:
+   <%= f.fields_for :lab do |lab| %>
+     <%= lab.label :principal_investigator %>
+     <%= lab.text_field :principal_investigator %>
+     <%= lab.label :institution %>
+     <%= lab.text_field :institution %>
+   <% end %>
+
+
 
    <%= f.submit "Create an Account" %>
 

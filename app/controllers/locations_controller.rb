@@ -1,10 +1,9 @@
 class LocationsController < ApplicationController
 
   def index
-    #nested routes
+    #only nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @locations = @lab.locations
-      #need alternative
     end
   end
 
@@ -12,15 +11,13 @@ class LocationsController < ApplicationController
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @location = @lab.locations.build
-      #byebug
-    else
-      @location = Location.new
-      @location.build_lab
+    #else
+      #@location = Location.new
+      #@location.build_lab
     end
   end
 
   def create
-    #byebug
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @location = @lab.locations.build(location_params)
     #else
@@ -28,8 +25,6 @@ class LocationsController < ApplicationController
     end
     #byebug
     if @location.save
-      #byebug
-      #@lab = Lab.find_by_id(params[:lab_id])
       redirect_to lab_location_path(@lab, @location)
     else
       render :new
@@ -37,9 +32,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    #byebug
     @location = Location.find(params[:id])
-    #redirect_to location_path(@location)
   end
 
   private

@@ -1,11 +1,18 @@
+<div ="container">
 <h2><%=@lab.principal_investigator%> Lab members:</h2>
+<br>
+
+  <ul>
   <% @users.each do |user| %>
-    <ul>
+    <li>
       Name:<%= user.name %><br>
       Email:<%= user.email %><br>
+      Admin:<%= user.admin %><br>
       <%= link_to 'Delete',
         user_path(user),
           method: :delete,
           data: { confirm: 'Are you sure?'} %>
-    </ul>
+    </li>
   <% end %>
+  </ul>
+  </div>

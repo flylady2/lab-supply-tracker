@@ -1,27 +1,35 @@
 class UsersController < ApplicationController
+
   skip_before_action :require_login, only: [:new, :create]
+
 def index
   if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-    @users = @lab.users.order_by_name
+    if current_user.admin
+      @users = @lab.users.order_by_name
+    else
+      flash[:message] = "You are not authorized to view those records."
+      redirect_to lab_path(@current_user.lab_id)
+    end
   end
 end
 
-
-#loading the signup form
+#load the signup form
 def new
-  @user = User.new
+  if params[:lab_id] && @lab = Lab.find_by(params[:lab_id])
+    @user = @lab.users.build
+  else
+    @user = User.new
+    @user.build_lab
+  end
 end
 
-#signup
+#sign up new user
 def create
-  #byebug
   if params[:lab_id] && lab = Lab.find_by_id(params[:lab_id])
     @user = @lab.build_user(user_params)
   else
     @user = User.new(user_params)
-    #put choose_lab route here
   end
-  #byebug
   if @user.save
     session[:user_id] = @user.id
     UserMailer.with(user: @user).welcome_email.deliver_now
@@ -30,10 +38,6 @@ def create
   else
     render :new
   end
-  #else
-    #flash[:message] = "You must be a member of a participating lab to sign up"
-  #  redirect_to '/' #home or welcome page
-  #end
 end
 
 def show
@@ -46,13 +50,8 @@ def show
   end
 end
 
-
-
-
-
-
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :lab_id, :admin)
+    params.require(:user).permit(:name, :email, :password, :lab_id, :admin, lab_attributes:[:principal_investigator, :institution])
   end
 end

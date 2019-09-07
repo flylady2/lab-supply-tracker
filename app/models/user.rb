@@ -18,6 +18,11 @@ class User < ApplicationRecord
     end
   end
 
+  def lab_attributes=(lab_params)
+    lab = Lab.find_or_create_by(lab_params)
+    self.lab = lab if lab.valid?
+  end
+
   scope :order_by_name, -> {order(:name)}
   scope :search_by_consumer_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
 end
