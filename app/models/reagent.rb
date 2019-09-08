@@ -14,11 +14,6 @@ class Reagent < ApplicationRecord
   end
 
 
-
-  #def self.search_by_name(search_name)
-    #Reagent.arel_table[:name].lower.matches("%#{search_name.downcase}%")
-  #end
-
   scope :search_by_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
 
 end

@@ -1,37 +1,4 @@
 
 <%= render partial: "layouts/errors", locals: {object: @reagent} %>
 
-<%= form_for [@lab, @reagent] do |f| %>
-
-   <%= f.label :name %>
-   <%= f.text_field :name %>
-   <br><br>
-   <%= f.label :category_id, "Select category" %>
-   <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
-    <br><br>
-    Or make a new category:
-    <%= f.fields_for :category do |category| %>
-      <%= category.label :name %>
-      <%= category.text_field :name %>
-    <% end %>
-
-   <%= f.label :source %>
-   <%= f.text_field :source %>
-    <br><br>
-   <%= f.label :unit%>
-   <%= f.text_field :unit%>
-    <br><br>
-    <%= f.label :quantity%>
-    <%= f.number_field :quantity, step: 0.1 %>
-    <br><br>
-    <%= f.label :trigger%>
-    <%= f.number_field :trigger, step: 0.1 %>
-    <br><br>
-   <%= f.label :location_id, "Select location" %>
-   <%= f.collection_select :location_id, Location.all, :id, :name %>
-
-
-
-   <%= f.submit "Create Reagent" %>
-
-<% end %>
+<%= render "form" %>

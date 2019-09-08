@@ -2,51 +2,37 @@ class ReagentUsesController < ApplicationController
   include ReagentUsesSorter
 
 
-  def index
+  def index #nested under labs [:show]
     @lab = Lab.find_by_id(params[:lab_id])
-    if !params[:reagent]
+    if !params[:reagent] #no search term
       @reagent_uses = @lab.reagent_uses
     elsif params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
-      sorter
-    else
+      sorter #search term present
+    else #empty search term
       @reagent_uses = @lab.reagent_uses
     end
   end
 
 
-  def new
+  def new #nested under reagents[:show]
     @current_user = User.find_by(id: session[:user_id])
-
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
-
       @reagent_use = @reagent.reagent_uses.build
-      #render :new
-
-      #byebug
-    #else
-      #@reagent_use = ReagentUse.new
-      #@reagent_use.build_reagent
     end
   end
 
-  def create
-    #byebug
+  def create #nested under reagents[:show]
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
-
       @reagent_use = @reagent.reagent_uses.build(reagent_use_params)
     end
-    if @reagent_use.quantity > @reagent.quantity
+    if @reagent_use.quantity > @reagent.quantity #reagent_use rejected
       flash[:message] = "Sorry. There is not enough of this reagent for your experiment."
       redirect_to reagent_path(@reagent)
     else
-      #byebug
-    @reagent_use.save
-    #byebug
-    @reagent_use.enough
-    flash[:message] = "Thank you for recording your reagent use."#byebug
-    #byebug
+    @reagent_use.save  #reagent_use accepted
+    @reagent_use.enough #calculates new quantity, sends email if trigger activated
+    flash[:message] = "Thank you for recording your reagent use."
     redirect_to reagent_reagent_use_path(@reagent, @reagent_use)
-
     end
   end
 
