@@ -1,57 +1,16 @@
 class ReagentUsesController < ApplicationController
   include ReagentUsesSorter
 
-  #if params[:reagent]
-  #  @reagent = @lab.reagents.search_by_name(params[:reagent])
-  #  @reagent_uses = @lab.reagent_uses.search_by_reagent(@reagent.id)
-#  end
 
   def index
-    #byebug
-    if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      if !params[:reagent]
-        @reagent_uses = @lab.reagent_uses
-      else
-        sorter
-      end
-      #@reagent_uses = @lab.reagent_uses
-      #byebug
-    #  if params[:reagent] != ""
-    #    reagent = @lab.reagents.search_by_name(params[:reagent]).first
-        #byebug
-    #    if reagent
-      #    @reagent_uses = ReagentUse.search_by_reagent_id(reagent.id)
-          #byebug
-      #  else
-      #    flash[:message] = "There are no reagent use records for that reagent."
-      #   @reagent_uses = @lab.reagent_uses
-      #  end
-    #  end
-
-      #if params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
-        #byebug
-
-    #else @reagent_uses = @lab.reagent_uses
-      #end
-
-    #  if params[:consumer] != ""
-      #byebug
-    #    user = @lab.users.search_by_consumer_name(params[:consumer]).first
-      #byebug
-      #  if user
-        #byebug
-      #    @reagent_uses = ReagentUse.search_by_user_id(user.id)
-      #  else
-        #  flash[:message] = "There are no reagent use records for that user."
-        #  @reagent_uses = @lab.reagent_uses
-      #  end
-      #else
-      #  @reagent_uses = @lab.reagent_uses
-    #  end
+    @lab = Lab.find_by_id(params[:lab_id])
+    if !params[:reagent]
+      @reagent_uses = @lab.reagent_uses
+    elsif params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
+      sorter
     else
-      @reagent_uses = ReagentUse.all
+      @reagent_uses = @lab.reagent_uses
     end
-    #byebug
   end
 
 

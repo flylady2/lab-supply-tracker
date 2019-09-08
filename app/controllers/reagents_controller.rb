@@ -1,35 +1,27 @@
 class ReagentsController < ApplicationController
 
   def ask
-    #if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-    #if params[:name]
-
-      #UserMailer.with(user: @user, lab: @user.lab).request_reagent_email.deliver_now
-      @lab = Lab.find_by_id(params[:lab_id])
-      if params[:lab_id] && params[:name]
-      #byebug
-        UserMailer.with(user: current_user, lab: @lab, name: params[:name]).ask_email.deliver_now
-      end
+    @lab = Lab.find_by_id(params[:lab_id])
+    if params[:lab_id] && params[:name] != ""
+      UserMailer.with(user: current_user, lab: @lab, name: params[:name]).ask_email.deliver_now
       flash[:message] = "Your reagent request has been sent."
       redirect_to lab_path(@lab)
+    else
+      flash[:message] = "There was a problem with your reagent request."
+      redirect_to lab_path(@lab)
     end
-    #else
-      #redirect_to '/'
-    #end
-  #end
+  end
 
   def index
-    #byebug
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      @reagents = @lab.reagents
-      if params[:name]
+      if params[:name] != ""
         @reagents = @lab.reagents.search_by_name(params[:name])
       else
         @reagents = @lab.reagents
-
       end
     else
+      flash[:message] = "That information is not available."
       redirect_to '/'
     end
   end
@@ -62,6 +54,7 @@ class ReagentsController < ApplicationController
     end
   end
 
+
   def show
     set_reagent
     @user = current_user
@@ -70,7 +63,6 @@ class ReagentsController < ApplicationController
   def edit
     set_reagent
     @lab = Lab.find(@reagent.lab_id)
-    #if !@lab.users.include?(current_user) ||
     if !current_user.admin
       flash[:message] = "You are not authorized to view the edit page."
       redirect_to lab_reagent_path(@lab, @reagent)
@@ -104,12 +96,5 @@ class ReagentsController < ApplicationController
     @reagent = Reagent.find(params[:id])
   end
 
-  def set_reagent_lab
-    @lab = Lab.find(params[:lab_id])
-    if !@lab.users.include?(current_user)
-      flash[:message] = "Access is restricted to members of the #{@lab.principal_investigator.name} lab."
-      redirect_to '/'
-    end
-  end
 
 end
