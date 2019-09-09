@@ -15,10 +15,11 @@ class ReagentsController < ApplicationController
   def index
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      if params[:name] != ""
-        @reagents = @lab.reagents.search_by_name(params[:name])
+      #byebug
+      if params[:name] == nil || params[:name] == ""
+          @reagents = @lab.reagents
       else
-        @reagents = @lab.reagents
+        @reagents = @lab.reagents.search_by_name(params[:name])
       end
     else
       flash[:message] = "That information is not available."
@@ -28,16 +29,20 @@ class ReagentsController < ApplicationController
 
   def new
     if !current_user.admin
-      flash[:message] = "You are not authorized to add a reagent"
+      flash[:message] = "You are not authorized to add a reagent."
       redirect_to lab_path(Lab.find_by_id(params[:lab_id]))
     end
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      @reagent = @lab.reagents.build
-      @category = @reagent.build_category
+      if @lab.users.include?(current_user)
+        @reagent = @lab.reagents.build
+        @category = @reagent.build_category
+      else
+        flash[:message] = "You are not authorized to add a reagent to this lab "
+        redirect_to '/'
+      end
     else
-      @reagent = Reagent.new
-      @reagent.build_lab
-      @category = @reagent.build_category
+      flash[:message] = "New reagents must be associated with an existing lab. "
+      redirect_to '/'
     end
   end
 

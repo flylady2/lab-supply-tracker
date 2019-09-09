@@ -2,14 +2,22 @@ class ReagentUsesController < ApplicationController
   include ReagentUsesSorter
 
 
-  def index #nested under labs [:show]
-    @lab = Lab.find_by_id(params[:lab_id])
-    if !params[:reagent] #no search term
-      @reagent_uses = @lab.reagent_uses
-    elsif params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
-      sorter #search term present
-    else #empty search term
-      @reagent_uses = @lab.reagent_uses
+  def index
+    if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
+      if !@lab.users.include?(current_user)
+        flash[:message] = "You are not authorized to see those records."
+        redirect_to '/'
+      end
+      if !params[:reagent] #no search term
+        @reagent_uses = @lab.reagent_uses
+      elsif params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
+        sorter #search term present
+      else #empty search term
+        @reagent_uses = @lab.reagent_uses
+      end
+    else
+      flash[:message] = "Reagent_use records must be asociated with a lab."
+      redirect_to '/'
     end
   end
 

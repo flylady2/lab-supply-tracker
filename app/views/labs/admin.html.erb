@@ -1,16 +1,16 @@
 <h2><%=link_to "See #{@lab.principal_investigator} Lab members", lab_users_path(@lab)%></h2>
 
-<h2><%= link_to "See all reagents", lab_reagents_path(@lab) %></h2>
+
 
 <h2><%= link_to "Add a new reagent", new_lab_reagent_path(@lab) %></h2>
 
-<h2><%= link_to "View reagent use registrations.", lab_reagent_uses_path(@lab) %></h2>
+<h2><%= link_to "View reagent use records.", lab_reagent_uses_path(@lab) %></h2>
 
 <h2><%= link_to "Create a new location", new_lab_location_path(@lab) %></h2>
 
 <%= form_tag(lab_reagent_uses_path(@lab), method: "get") do %>
 
-<h2><%= label_tag(:name, "View reagent use registrations by reagent name") %></h2>
+<h2><%= label_tag(:name, "View reagent use records by reagent name") %></h2>
 <%= text_field_tag(:reagent) %>
 <%= submit_tag("Reagent name") %>
 
