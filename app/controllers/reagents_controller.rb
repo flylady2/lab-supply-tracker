@@ -2,6 +2,7 @@ class ReagentsController < ApplicationController
 
   def ask
     @lab = Lab.find_by_id(params[:lab_id])
+    require_membership
     if params[:lab_id] && params[:name] != ""
       UserMailer.with(user: current_user, lab: @lab, name: params[:name]).ask_email.deliver_now
       flash[:message] = "Your reagent request has been sent."
@@ -15,7 +16,7 @@ class ReagentsController < ApplicationController
   def index
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      #byebug
+      require_membership
       if params[:name] == nil || params[:name] == ""
           @reagents = @lab.reagents
       else
@@ -28,18 +29,11 @@ class ReagentsController < ApplicationController
   end
 
   def new
-    if !current_user.admin
-      flash[:message] = "You are not authorized to add a reagent."
-      redirect_to lab_path(Lab.find_by_id(params[:lab_id]))
-    end
+    require_admin
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      if @lab.users.include?(current_user)
-        @reagent = @lab.reagents.build
-        @category = @reagent.build_category
-      else
-        flash[:message] = "You are not authorized to add a reagent to this lab "
-        redirect_to '/'
-      end
+      require_membership
+      @reagent = @lab.reagents.build
+      @category = @reagent.build_category
     else
       flash[:message] = "New reagents must be associated with an existing lab. "
       redirect_to '/'
@@ -61,19 +55,14 @@ class ReagentsController < ApplicationController
 
 
   def show
-    set_reagent
-    @user = current_user
+    set_reagent_and_lab
+    require_membership
   end
 
   def edit
-    set_reagent
-    @lab = Lab.find(@reagent.lab_id)
-    if !current_user.admin
-      flash[:message] = "You are not authorized to view the edit page."
-      redirect_to lab_reagent_path(@lab, @reagent)
-    else
-      render :edit
-    end
+    require_admin
+    set_reagent_and_lab
+    require_membership
   end
 
   def update
@@ -85,9 +74,12 @@ class ReagentsController < ApplicationController
     end
   end
 
-  def delete
-    set_reagent
+  def destroy
+    require_admin
+    set_reagent_and_lab
+    require_membership
     @reagent.destroy
+    redirect_to lab_path(@lab)
   end
 
 
@@ -99,6 +91,11 @@ class ReagentsController < ApplicationController
 
   def set_reagent
     @reagent = Reagent.find(params[:id])
+  end
+
+  def set_reagent_and_lab
+    @reagent = Reagent.find(params[:id])
+    @lab = Lab.find(@reagent.lab_id)
   end
 
 

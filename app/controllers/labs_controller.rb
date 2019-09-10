@@ -12,10 +12,7 @@ class LabsController < ApplicationController
 
   def show
     @lab = Lab.find(params[:id])
-    if !@lab.users.include?(current_user)
-      flash[:message] = "Access to lab pages is restricted to members of that lab."
-      redirect_to '/'
-    end
+    require_membership
   end
 
   private

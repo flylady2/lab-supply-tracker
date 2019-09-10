@@ -11,9 +11,9 @@ class LocationsController < ApplicationController
     #nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @location = @lab.locations.build
-    #else
-      #@location = Location.new
-      #@location.build_lab
+    else
+      flash[:message] = "Location must be associated with a lab."
+      redirect_to '/'
     end
   end
 

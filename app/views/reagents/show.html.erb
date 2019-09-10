@@ -9,10 +9,14 @@
 
     <br><br>
     Location: <%= @reagent.location.name%>
-  
+
 
   <%= link_to "Go to this form to use this reagent:", new_reagent_reagent_use_path(@reagent) %>
 
-  <% if @user.admin? %>
+  <% if @current_user.admin? %>
     <%= link_to "Edit this reagent", edit_reagent_path(@reagent) %>
+  <% end %>
+
+  <% if @current_user.admin? %>
+    <%= link_to "Delete this reagent", reagent_path(@reagent), method: :delete %>
   <% end %>

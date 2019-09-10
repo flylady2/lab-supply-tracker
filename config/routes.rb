@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-  resources :categories
+  resources :categories, only: [:index]
   resources :locations
   resources :reagent_uses
   resources :reagents
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get 'reagents/ask' => 'reagents#ask'
     get 'admin' => 'labs#admin'
     resources :reagents
-    resources :categories
+    resources :categories, only: [:index, :show]
     resources :locations
     resources :reagent_uses
     resources :users

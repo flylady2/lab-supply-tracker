@@ -12,7 +12,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  
+  def require_admin
+    unless current_user.admin
+      flash[:message] = "You must be an administrator to access this function."
+      @lab = Lab.find(current_user.lab_id)
+      redirect_to lab_path(@lab)
+    end
+  end
+
+  def require_membership
+    unless @lab.users.include?(current_user)
+      flash[:message] = "You may only access your own lab's pages."
+      redirect_to '/'
+    end
+  end
+
 
 
 

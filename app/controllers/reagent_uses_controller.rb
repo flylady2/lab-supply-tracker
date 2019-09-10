@@ -4,10 +4,7 @@ class ReagentUsesController < ApplicationController
 
   def index
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-      if !@lab.users.include?(current_user)
-        flash[:message] = "You are not authorized to see those records."
-        redirect_to '/'
-      end
+      require_membership
       if !params[:reagent] #no search term
         @reagent_uses = @lab.reagent_uses
       elsif params[:reagent] != "" || params[:consumer] != "" || params[:start_date] != ""
