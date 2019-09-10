@@ -22,6 +22,8 @@ class ReagentUsesController < ApplicationController
   def new #nested under reagents[:show]
     @current_user = User.find_by(id: session[:user_id])
     if params[:reagent_id] && @reagent = Reagent.find_by_id(params[:reagent_id])
+      @lab = Lab.find(@reagent.lab_id)
+      require_membership
       @reagent_use = @reagent.reagent_uses.build
     end
   end

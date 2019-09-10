@@ -1,4 +1,6 @@
 class ReagentsController < ApplicationController
+  before_action :require_admin, only: [:new, :edit, :destroy]
+
 
   def ask
     @lab = Lab.find_by_id(params[:lab_id])
@@ -29,7 +31,6 @@ class ReagentsController < ApplicationController
   end
 
   def new
-    require_admin
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       require_membership
       @reagent = @lab.reagents.build
@@ -60,7 +61,6 @@ class ReagentsController < ApplicationController
   end
 
   def edit
-    require_admin
     set_reagent_and_lab
     require_membership
   end
@@ -75,7 +75,6 @@ class ReagentsController < ApplicationController
   end
 
   def destroy
-    require_admin
     set_reagent_and_lab
     require_membership
     @reagent.destroy

@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
-
+  before_action :require_admin, only: [:index]
   skip_before_action :require_login, only: [:new, :create]
 
 def index
   if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
-    if current_user.admin
-      @users = @lab.users.order_by_name
-    else
-      flash[:message] = "You are not authorized to view those records."
-      redirect_to lab_path(@current_user.lab_id)
-    end
+    require_membership
+    @users = @lab.users.order_by_name
+  else
+    flash[:message] = "That information is lab-specific."
+    redirect_to '/'
   end
 end
 

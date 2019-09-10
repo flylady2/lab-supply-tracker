@@ -20,10 +20,7 @@ class LocationsController < ApplicationController
   def create
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       @location = @lab.locations.build(location_params)
-    #else
-    #  @location = Location.new(location_params)
     end
-    #byebug
     if @location.save
       redirect_to lab_location_path(@lab, @location)
     else

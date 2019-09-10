@@ -1,13 +1,10 @@
 class LabsController < ApplicationController
 
+  before_action :require_admin, only: [:admin]
+
   def admin
     @lab = Lab.find_by(params[:lab_id])
-    if @lab.users.include?(current_user) && current_user.admin
-      render :admin
-    else
-      flash[:message] = "Access to admin functions is restricted to users with admin status."
-      redirect_to '/'
-    end
+    require_membership
   end
 
   def show
