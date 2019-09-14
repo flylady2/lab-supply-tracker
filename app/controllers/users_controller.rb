@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_admin, only: [:index]
+  before_action :require_admin, only: [:index, :destroy]
   skip_before_action :require_login, only: [:new, :create]
 
 def index
@@ -24,7 +24,7 @@ end
 
 #sign up new user
 def create
-  if params[:lab_id] && lab = Lab.find_by_id(params[:lab_id])
+  if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
     @user = @lab.build_user(user_params)
   else
     @user = User.new(user_params)
@@ -47,6 +47,14 @@ def show
   else
     render :show
   end
+end
+
+def destroy
+  @user = User.find_by_id(params[:id])
+  @lab = Lab.find(@user.lab_id)
+  require_membership
+  @user.destroy
+  redirect_to lab_admin_path(@lab)
 end
 
   private

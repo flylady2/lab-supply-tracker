@@ -15,7 +15,6 @@ class UserMailer < ApplicationMailer
 
   def new_user_notification_email
     @user = params[:user]
-    #@reagent = params[:reagent]
     @lab = params[:lab]
     mail(to: @lab.admin_emails, subject: "New user signed up for Lab Supply Tracker.")
   end
