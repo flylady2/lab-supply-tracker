@@ -10,7 +10,7 @@ class ReagentUse < ApplicationRecord
   def enough
       self.reagent.update(:quantity => (self.reagent.quantity) - (self.quantity))
       if self.reagent.quantity < self.reagent.trigger
-        UserMailer.with(user: self.user, reagent: self.reagent, lab: self.reagent.lab).trigger_email.deliver_now
+        AdminMailer.with(user: self.user, reagent: self.reagent, lab: self.reagent.lab).trigger_email.deliver_now
       end
   end
 

@@ -6,7 +6,7 @@ class ReagentsController < ApplicationController
     @lab = Lab.find_by_id(params[:lab_id])
     require_membership
     if params[:lab_id] && params[:name] != ""
-      UserMailer.with(user: current_user, lab: @lab, name: params[:name]).ask_email.deliver_now
+      AdminMailer.with(user: current_user, lab: @lab, name: params[:name]).ask_email.deliver_now
       flash[:message] = "Your reagent request has been sent."
       redirect_to lab_path(@lab)
     else
