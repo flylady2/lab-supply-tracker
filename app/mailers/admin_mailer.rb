@@ -3,9 +3,8 @@
 class AdminMailer < ApplicationMailer
   default from: 'Lab Supply Tracker'
 
-
   def new_user_notification_email
-    @user = params[:user]
+    @user = params[:new_user]
     @lab = params[:lab]
     mail(to: @lab.admin_emails, subject: "New user signed up for Lab Supply Tracker.")
   end

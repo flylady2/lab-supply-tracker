@@ -6,8 +6,7 @@
     <% @reagents.each do |reagent| %>
       <li>
         <%= link_to reagent.name, reagent_path(reagent) %> <br>
-        Current amount: <%= reagent.quantity %> <br>
-        Amount over trigger: <%= (reagent.quantity - reagent.trigger)%> <%= reagent.unit %>
+        Current amount: <%= reagent.quantity %>  <%= reagent.unit %> 
       </li>
     <% end %>
   </ul>

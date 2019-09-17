@@ -4,7 +4,7 @@
 <ul>
   <% @reagent_uses.order(date: :desc).each do |use| %>
   <li>Reagent:<%=use.reagent.name %></li>
-  <li>User:<%=use.user.name if use.user%></li>
+  <li>User:<%=use.user.name if use.user %></li>
   <li>Date:<%=use.date.strftime("%m/%d/%Y") %></li>
   <li>Quantity:<%=use.quantity %></li>
   <li>Unit:<%=use.unit %></li>

@@ -31,8 +31,8 @@ def create
   end
   if @user.save
     session[:user_id] = @user.id
-    UserMailer.with(user: @user).welcome_email.deliver_now
-    AdminMailer.with(user: @user, lab: @user.lab).new_user_notification_email.deliver_now
+    UserMailer.with(new_user: @user).welcome_email.deliver_now
+    AdminMailer.with(new_user: @user, lab: @user.lab).new_user_notification_email.deliver_now
     redirect_to lab_path(@user.lab_id)
   else
     render :new

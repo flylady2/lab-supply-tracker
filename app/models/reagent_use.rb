@@ -3,7 +3,7 @@ class ReagentUse < ApplicationRecord
   belongs_to :user
   belongs_to :lab
 
-  validates :unit, :quantity, :date, presence: true
+  validates :unit, :quantity, :date, :user_id, :lab_id, :reagent_id, presence: true
 
 
 
