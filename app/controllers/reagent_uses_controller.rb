@@ -1,7 +1,6 @@
 class ReagentUsesController < ApplicationController
   include ReagentUsesSorter
 
-
   def index
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       require_membership
@@ -17,7 +16,6 @@ class ReagentUsesController < ApplicationController
       redirect_to '/'
     end
   end
-
 
   def new #nested under reagents[:show]
     @current_user = User.find_by(id: session[:user_id])
