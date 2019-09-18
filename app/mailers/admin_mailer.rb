@@ -11,7 +11,7 @@ class AdminMailer < ApplicationMailer
 
 
   def trigger_email
-    @user = params[:user]
+    #@user = params[:user]
     @reagent = params[:reagent]
     @lab = params[:lab]
     mail(to: @lab.admin_emails, subject: "A reagent needs to be ordered.")
