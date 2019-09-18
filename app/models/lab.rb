@@ -7,13 +7,6 @@ class Lab < ApplicationRecord
   validates :principal_investigator, :institution, presence: true
   validates :principal_investigator, uniqueness: { scope: :institution} #, message: "Institution already has a principal investigator with this name."}
 
-  def categories_by_lab
-    @categories = []
-    self.reagents.each do |reagent|
-      @categories << reagent.category
-    end
-    @categories.uniq
-  end
 
   def admin_emails
     self.users.where(admin: true).pluck(:email)
