@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_many :reagents, through: :reagent_uses
 
   validates :name, :email, presence: true
-  validates :email, uniqueness: true #{message: "That email is already in use."}
-  validates :name, uniqueness: { scope: :lab_id} #, message: "Lab already has a user with this name."}
-
+  validates :email, uniqueness: true
+  validates :name, uniqueness: { scope: :lab_id}
+  
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
       user.name = auth.info.name
