@@ -10,21 +10,21 @@
    <%= f.email_field :email %>
 
    <%= f.label :password %>
-   <%= f.password_field :password %>
+   <%= f.password_field :password %><br>
 
    <%= f.label :lab_id, "Select your lab" %>
    <%= f.collection_select :lab_id, Lab.all, :id, :principal_investigator, include_blank: true %>
-
-  Admin: <%= f.check_box :admin %>
-
-   Or sign up a new lab:
+   <br>
+  Admin: <%= f.check_box :admin %><br><br>
+  <div class='container'>
+   New labs can be signed up by new users with admin status:<br>
    <%= f.fields_for :lab do |lab| %>
      <%= lab.label :principal_investigator %>
      <%= lab.text_field :principal_investigator %>
      <%= lab.label :institution %>
      <%= lab.text_field :institution %>
    <% end %>
-
+ </div>
 
 
    <%= f.submit "Create an Account" %>
