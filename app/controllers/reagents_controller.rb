@@ -16,7 +16,7 @@ class ReagentsController < ApplicationController
   end
 
   def index
-    #nested route
+    #only nested route
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       require_membership
       if params[:name] == nil || params[:name] == ""
@@ -93,7 +93,7 @@ class ReagentsController < ApplicationController
   end
 
   def set_reagent_and_lab
-    @reagent = Reagent.find(params[:id])
+    set_reagent
     @lab = Lab.find(@reagent.lab_id)
   end
 
