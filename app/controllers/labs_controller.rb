@@ -3,7 +3,8 @@ class LabsController < ApplicationController
   before_action :require_admin, only: [:admin]
 
   def admin
-    @lab = Lab.find_by(params[:lab_id])
+    @lab = Lab.find(params[:lab_id])
+    #byebug
     require_membership
   end
 
