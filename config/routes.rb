@@ -16,14 +16,14 @@ Rails.application.routes.draw do
   resources :reagent_uses
   resources :reagents
   resources :reagents, only: [:show] do
-    resources :reagent_uses, only: [:new, :create]
+    resources :reagent_uses, only: [:new, :create, :show]
   end
   resources :users
   #resources :labs
   resources :labs do
     get 'reagents/ask' => 'reagents#ask'
     get 'admin' => 'labs#admin'
-    resources :reagents, only: [:index, :new, :create]
+    resources :reagents, only: [:index, :new, :create, :show]
     resources :categories, only: [:index, :show]
     resources :locations, only: [:index, :new, :create]
     resources :reagent_uses, only: [:index]
