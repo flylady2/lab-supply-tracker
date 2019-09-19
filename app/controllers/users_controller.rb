@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:index, :destroy]
   skip_before_action :require_login, only: [:new, :create]
 
+def most_active_user
+  @user = User.most_active
+end
+
 def index
   if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
     require_membership

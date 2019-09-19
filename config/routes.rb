@@ -3,13 +3,14 @@ Rails.application.routes.draw do
 
   root 'sessions#welcome'
 
-  get '/login' => 'sessions#new'
+  get '/login' => 'sessions#new', as: 'login'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   get '/auth/google_oauth2/callback' => 'sessions#oauth_login'
 
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+  get 'most_active_user' => 'users#most_active_user'
 
   resources :categories, only: [:index]
   resources :locations, only: [:show]
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     resources :reagent_uses, only: [:new, :create, :show]
   end
   resources :users
+
   #resources :labs
   resources :labs do
     get 'reagents/ask' => 'reagents#ask'
