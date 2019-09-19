@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
 def most_active_user
   @user = User.most_active
+  #byebug
+  #@user = User.find(user_id)
 end
 
 def index

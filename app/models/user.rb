@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   validates :email, uniqueness: true
   validates :name, uniqueness: { scope: :lab_id}
-  
+
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
       user.name = auth.info.name
@@ -25,4 +25,6 @@ class User < ApplicationRecord
 
   scope :order_by_name, -> {order(:name)}
   scope :search_by_consumer_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
+  scope :most_active, -> {User.joins(:reagent_uses).group(:user_id).order("count(reagent_uses.user_id) desc").limit(1).first}
+
 end
