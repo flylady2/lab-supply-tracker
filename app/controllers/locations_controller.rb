@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
       @location = @lab.locations.build(location_params)
     end
     if @location.save
-      redirect_to lab_location_path(@lab, @location)
+      redirect_to location_path(@location)
     else
       render :new
     end

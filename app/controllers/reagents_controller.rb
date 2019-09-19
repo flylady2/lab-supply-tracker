@@ -61,8 +61,7 @@ class ReagentsController < ApplicationController
   end
 
   def edit
-    set_reagent_and_lab
-    require_membership
+    set_reagent
   end
 
   def update
