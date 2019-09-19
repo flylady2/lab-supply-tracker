@@ -12,22 +12,22 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   resources :categories, only: [:index]
-  resources :locations
+  resources :locations, only: [:show]
   resources :reagent_uses
   resources :reagents
   resources :reagents, only: [:show] do
-    resources :reagent_uses
+    resources :reagent_uses, only: [:new, :create]
   end
   resources :users
-  resources :labs
-  resources :labs, only: [:show] do
+  #resources :labs
+  resources :labs do
     get 'reagents/ask' => 'reagents#ask'
     get 'admin' => 'labs#admin'
-    resources :reagents
+    resources :reagents, only: [:index, :new, :create]
     resources :categories, only: [:index, :show]
-    resources :locations
-    resources :reagent_uses
-    resources :users
+    resources :locations, only: [:index, :new, :create]
+    resources :reagent_uses, only: [:index]
+    resources :users, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
