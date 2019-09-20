@@ -23,8 +23,16 @@ class User < ApplicationRecord
     self.lab = lab if lab.valid?
   end
 
+  def most_active_lab_member
+    byebug
+  end
+
+  
+
+
   scope :order_by_name, -> {order(:name)}
   scope :search_by_consumer_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
-  scope :most_active, -> {User.joins(:reagent_uses).group(:user_id).order("count(reagent_uses.user_id) desc").limit(1).first}
+  scope :most_active, -> {User.joins(:reagent_uses).group(:user_id).order("count(reagent_uses.user_id) desc").limit(1)}
+  scope :most_active_lab_member, -> (lab){User.joins(:reagent_uses).where(lab_id: lab.id).group(:user_id).order("count(reagent_uses.user_id) desc").limit(1)}
 
 end

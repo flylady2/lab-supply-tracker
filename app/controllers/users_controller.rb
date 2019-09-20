@@ -3,9 +3,16 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
 def most_active_user
-  @user = User.most_active
+  @users = User.most_active
+end
+
+def most_active_lab_member
+  #@lab = current_user.lab
   #byebug
-  #@user = User.find(user_id)
+  lab = current_user.lab
+  #byebug
+  @users = User.most_active_lab_member(lab)
+
 end
 
 def index
