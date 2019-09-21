@@ -1,6 +1,14 @@
 class ReagentsController < ApplicationController
   before_action :require_admin, only: [:new, :edit, :destroy]
 
+  def most_used
+    @reagents = Reagent.most_used
+  end
+
+  def most_used_lab_reagent
+    lab = current_user.lab
+    @reagents = Reagent.most_used_lab_reagent(lab)
+  end
 
   def ask
     @lab = Lab.find_by_id(params[:lab_id])

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   get 'most_active_user' => 'users#most_active_user'
   get 'most_active_lab_member' => 'users#most_active_lab_member'
-
+  get 'most_used' => 'reagents#most_used'
+  get 'most_used_lab_reagent' => 'reagents#most_used_lab_reagent'
 
   resources :categories, only: [:index]
   resources :locations, only: [:show]

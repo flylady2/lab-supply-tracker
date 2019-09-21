@@ -15,5 +15,7 @@ class Reagent < ApplicationRecord
 
 
   scope :search_by_name, -> (search_name){where('lower(name) like ?', "%#{search_name.downcase}%")}
+  scope :most_used, -> {Reagent.joins(:reagent_uses).group(:reagent_id).order("count(reagent_uses.reagent_id) desc").limit(1)}
+  scope :most_used_lab_reagent, -> (lab){Reagent.joins(:reagent_uses).where(lab_id: lab.id).group(:reagent_id).order("count(reagent_uses.reagent_id) desc").limit(1)}
 
 end
