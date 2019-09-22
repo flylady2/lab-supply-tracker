@@ -28,7 +28,7 @@ class ReagentsController < ApplicationController
     if params[:lab_id] && @lab = Lab.find_by_id(params[:lab_id])
       require_membership
       if params[:name] == nil || params[:name] == ""
-          @reagents = @lab.reagents
+          @reagents = Reagent.lab_reagents(@lab)#@lab.reagents
       else
         @reagents = @lab.reagents.search_by_name(params[:name])
       end

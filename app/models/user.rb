@@ -3,7 +3,7 @@ class User < ApplicationRecord
   require 'securerandom'
 
   belongs_to :lab
-  has_many :reagent_uses
+  has_many :reagent_uses #, dependent: :delete_all
   has_many :reagents, through: :reagent_uses
 
   validates :name, :email, presence: true
@@ -27,7 +27,7 @@ class User < ApplicationRecord
     byebug
   end
 
-  
+
 
 
   scope :order_by_name, -> {order(:name)}

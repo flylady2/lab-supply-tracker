@@ -1,7 +1,11 @@
+<div class='container'>
+<h2>Categories of lab reagents:</h2>
 <ul>
-  <% @categories.each do |category| %>
+<% @categories.each do |category| %>
   <li>
-    <%= link_to category.name, category_path(category) %>
-  </li>
+    <% @category = category %>
+    <%= link_to @category.name, lab_category_path(@lab, @category) %>
+    </li>
   <% end %>
-</ul>
+  </ul>
+</div>
